@@ -1,6 +1,10 @@
-# Created by .ignore support plugin (hsz.mobi)
-### Example user template template
-### Example user template
+*.class
+
+#Package Files #
+*.jar
+*.war
+*.ear
+
 
 # IntelliJ project files
 .idea

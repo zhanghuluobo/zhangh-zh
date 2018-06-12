@@ -14,7 +14,7 @@
     <context:component-scan base-package="com.huluobo.module.service"/>
 
     <!-- 配置数据库相关参数properties的属性：${url} -->
-    <context:property-placeholder location="classpath:jdbc.properties"/>
+    <context:property-placeholder location="classpath:db.properties"/>
 
     <!-- 阿里 druid 数据库连接池 -->
     <bean id = "dataSource" class = "com.alibaba.druid.pool.DruidDataSource" destroy-method = "close">
@@ -23,16 +23,16 @@
         <property name = "username" value = "${jdbc.username}" />
         <property name = "password" value = "${jdbc.password}" />
         <property name = "driverClassName" value = "${jdbc.driverClassName}" />
-    </ bean >
+    </bean >
 
     <!-- 配置SqlSessionFactory对象 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <!-- 注入数据库连接池 -->
         <property name="dataSource" ref="dataSource"/>
         <!-- 扫描model包 使用别名 -->
-        <property name="typeAliasesPackage" value="com.chatRobot.model"/>
+        <property name="typeAliasesPackage" value="com.huluobo.module.entity"/>
         <!-- 扫描sql配置文件:mapper需要的xml文件 -->
-        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+        <property name="mapperLocations" value="classpath:mapping/*.xml"/>
     </bean>
 
     <!-- 配置扫描Dao接口包，动态实现Dao接口，注入到spring容器中 -->
@@ -40,7 +40,7 @@
         <!-- 注入sqlSessionFactory -->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <!-- 给出需要扫描Dao接口包 -->
-        <property name="basePackage" value="com.chatRobot.dao"/>
+        <property name="basePackage" value="com.huluobo.module.mapper"/>
     </bean>
 
     <!-- 配置事务管理器 -->
