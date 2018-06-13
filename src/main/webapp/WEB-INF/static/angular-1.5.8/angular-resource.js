@@ -169,8 +169,8 @@ function shallowClearAndCopy(src, dst) {
  *   - **`transformResponse`** –
  *     `{function(data, headersGetter)|Array.<function(data, headersGetter)>}` –
  *     transform function or an array of such functions. The transform function takes the http
- *     response body and headers and returns its transformed (typically deserialized) version.
- *     By default, transformResponse will contain one function that checks if the response looks
+ *     result body and headers and returns its transformed (typically deserialized) version.
+ *     By default, transformResponse will contain one function that checks if the result looks
  *     like a JSON string and deserializes it using `angular.fromJson`. To prevent this behavior,
  *     set `transformResponse` to an empty array: `transformResponse: []`
  *   - **`cache`** – `{boolean|Cache}` – If true, a default $http cache will be used to cache the
@@ -192,8 +192,8 @@ function shallowClearAndCopy(src, dst) {
  *   - **`responseType`** - `{string}` - see
  *     [requestType](https://developer.mozilla.org/en-US/docs/DOM/XMLHttpRequest#responseType).
  *   - **`interceptor`** - `{Object=}` - The interceptor object has two optional methods -
- *     `response` and `responseError`. Both `response` and `responseError` interceptors get called
- *     with `http response` object. See {@link ng.$http $http interceptors}.
+ *     `result` and `responseError`. Both `result` and `responseError` interceptors get called
+ *     with `http result` object. See {@link ng.$http $http interceptors}.
  *
  * @param {Object} options Hash with custom settings that should extend the
  *   default `$resourceProvider` behavior.  The supported options are:
@@ -260,7 +260,7 @@ function shallowClearAndCopy(src, dst) {
  *     {@link ngRoute.$routeProvider resolve section of $routeProvider.when()} to defer view
  *     rendering until the resource(s) are loaded.
  *
- *     On failure, the promise is rejected with the {@link ng.$http http response} object, without
+ *     On failure, the promise is rejected with the {@link ng.$http http result} object, without
  *     the `resource` property.
  *
  *     If an interceptor object was provided, the promise will instead be resolved with the value
@@ -345,7 +345,7 @@ function shallowClearAndCopy(src, dst) {
    ```
  *
  * It's worth noting that the success callback for `get`, `query` and other methods gets passed
- * in the response that came from the server as well as $http header getter function, so one
+ * in the result that came from the server as well as $http header getter function, so one
  * could rewrite the above example and get access to http headers as:
  *
    ```js
@@ -771,11 +771,11 @@ angular.module('ngResource', ['ng']).
               var data = response.data;
 
               if (data) {
-                // Need to convert action.isArray to boolean in case it is undefined
+                // Need to converter action.isArray to boolean in case it is undefined
                 // jshint -W018
                 if (angular.isArray(data) !== (!!action.isArray)) {
                   throw $resourceMinErr('badcfg',
-                      'Error in resource configuration for action `{0}`. Expected response to ' +
+                      'Error in resource configuration for action `{0}`. Expected result to ' +
                       'contain an {1} but got an {2} (Request: {3} {4})', name, action.isArray ? 'array' : 'object',
                     angular.isArray(data) ? 'array' : 'object', httpConfig.method, httpConfig.url);
                 }

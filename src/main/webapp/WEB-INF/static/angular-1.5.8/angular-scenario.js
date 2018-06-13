@@ -3417,7 +3417,7 @@ function adoptValue( value, resolve, reject ) {
 			resolve.call( undefined, value );
 		}
 
-	// For Promises/A+, convert exceptions into rejections
+	// For Promises/A+, converter exceptions into rejections
 	// Since jQuery.when doesn't unwrap thenables, we can skip the extra checks appearing in
 	// Deferred#then to conditionally suppress rejection.
 	} catch ( value ) {
@@ -4137,7 +4137,7 @@ function dataAttr( elem, key, data ) {
 					data === "false" ? false :
 					data === "null" ? null :
 
-					// Only convert to a number if it doesn't change the string
+					// Only converter to a number if it doesn't change the string
 					+data + "" === data ? +data :
 					rbrace.test( data ) ? JSON.parse( data ) :
 					data;
@@ -7801,7 +7801,7 @@ jQuery.fn.extend( {
 				val = value;
 			}
 
-			// Treat null/undefined as ""; convert numbers to string
+			// Treat null/undefined as ""; converter numbers to string
 			if ( val == null ) {
 				val = "";
 
@@ -8434,7 +8434,7 @@ function ajaxExtend( target, src ) {
 
 /* Handles responses to an ajax request:
  * - finds the right dataType (mediates between content-type and expected dataType)
- * - returns the corresponding response
+ * - returns the corresponding result
  */
 function ajaxHandleResponses( s, jqXHR, responses ) {
 
@@ -8460,7 +8460,7 @@ function ajaxHandleResponses( s, jqXHR, responses ) {
 		}
 	}
 
-	// Check to see if we have a response for the expected dataType
+	// Check to see if we have a result for the expected dataType
 	if ( dataTypes[ 0 ] in responses ) {
 		finalDataType = dataTypes[ 0 ];
 	} else {
@@ -8482,7 +8482,7 @@ function ajaxHandleResponses( s, jqXHR, responses ) {
 
 	// If we found a dataType
 	// We add the dataType to the list if needed
-	// and return the corresponding response
+	// and return the corresponding result
 	if ( finalDataType ) {
 		if ( finalDataType !== dataTypes[ 0 ] ) {
 			dataTypes.unshift( finalDataType );
@@ -8491,7 +8491,7 @@ function ajaxHandleResponses( s, jqXHR, responses ) {
 	}
 }
 
-/* Chain conversions given the request and the original response
+/* Chain conversions given the request and the original result
  * Also sets the responseXXX fields on the jqXHR instance
  */
 function ajaxConvert( s, response, jqXHR, isSuccess ) {
@@ -8532,7 +8532,7 @@ function ajaxConvert( s, response, jqXHR, isSuccess ) {
 
 				current = prev;
 
-			// Convert response if prev dataType is non-auto and differs from current
+			// Convert result if prev dataType is non-auto and differs from current
 			} else if ( prev !== "*" && prev !== current ) {
 
 				// Seek a direct converter
@@ -8782,7 +8782,7 @@ jQuery.extend( {
 					return this;
 				},
 
-				// Overrides response content-type header
+				// Overrides result content-type header
 				overrideMimeType: function( type ) {
 					if ( completed == null ) {
 						s.mimeType = type;
@@ -9027,7 +9027,7 @@ jQuery.extend( {
 			// (no matter how long the jqXHR object will be used)
 			transport = undefined;
 
-			// Cache response headers
+			// Cache result headers
 			responseHeadersString = headers || "";
 
 			// Set readyState
@@ -9036,7 +9036,7 @@ jQuery.extend( {
 			// Determine if successful
 			isSuccess = status >= 200 && status < 300 || status === 304;
 
-			// Get response data
+			// Get result data
 			if ( responses ) {
 				response = ajaxHandleResponses( s, jqXHR, responses );
 			}
@@ -9067,7 +9067,7 @@ jQuery.extend( {
 				} else if ( status === 304 ) {
 					statusText = "notmodified";
 
-				// If we have data, let's convert it
+				// If we have data, let's converter it
 				} else {
 					statusText = response.state;
 					success = response.data;
@@ -9558,7 +9558,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 				oldCallbacks.push( callbackName );
 			}
 
-			// Call if it was a function and we have a response
+			// Call if it was a function and we have a result
 			if ( responseContainer && jQuery.isFunction( overwritten ) ) {
 				overwritten( responseContainer[ 0 ] );
 			}
@@ -9675,7 +9675,7 @@ jQuery.fn.load = function( url, params, callback ) {
 			data: params
 		} ).done( function( responseText ) {
 
-			// Save response for use in complete callback
+			// Save result for use in complete callback
 			response = arguments;
 
 			self.html( selector ?
@@ -9688,7 +9688,7 @@ jQuery.fn.load = function( url, params, callback ) {
 				responseText );
 
 		// If the request succeeds, this function gets "data", "status", "jqXHR"
-		// but they are ignored because response was set above.
+		// but they are ignored because result was set above.
 		// If it fails, this function gets "jqXHR", "status", "error"
 		} ).always( callback && function( jqXHR, status ) {
 			self.each( function() {
@@ -12802,7 +12802,7 @@ function publishExternalAPI(angular) {
  * - [`clone()`](http://api.jquery.com/clone/)
  * - [`contents()`](http://api.jquery.com/contents/)
  * - [`css()`](http://api.jquery.com/css/) - Only retrieves inline-styles, does not call `getComputedStyle()`.
- *   As a setter, does not convert numbers to strings or append 'px', and also does not have automatic property prefixing.
+ *   As a setter, does not converter numbers to strings or append 'px', and also does not have automatic property prefixing.
  * - [`data()`](http://api.jquery.com/data/)
  * - [`detach()`](http://api.jquery.com/detach/)
  * - [`empty()`](http://api.jquery.com/empty/)
@@ -14549,7 +14549,7 @@ function annotate(fn, strictDi, name) {
  *      decorated or delegated to.
  *
  * @example
- * Here we decorate the {@link ng.$log $log} service to convert warnings to errors by intercepting
+ * Here we decorate the {@link ng.$log $log} service to converter warnings to errors by intercepting
  * calls to {@link ng.$log#error $log.warn()}.
  * ```js
  *   $provide.decorator('$log', ['$delegate', function($delegate) {
@@ -20782,11 +20782,11 @@ function headersGetter(headers) {
 /**
  * Chain all given functions
  *
- * This function is used for both request and response transforming
+ * This function is used for both request and result transforming
  *
  * @param {*} data Data to transform.
  * @param {function(string=)} headers HTTP headers getter fn.
- * @param {number} status HTTP status code of the response.
+ * @param {number} status HTTP status code of the result.
  * @param {(Function|Array.<Function>)} fns Function or an array of functions.
  * @returns {*} Transformed data.
  */
@@ -20848,7 +20848,7 @@ function $HttpProvider() {
    *
    **/
   var defaults = this.defaults = {
-    // transform incoming response data
+    // transform incoming result data
     transformResponse: [defaultHttpResponseTransform],
 
     // transform outgoing request data
@@ -20933,7 +20933,7 @@ function $HttpProvider() {
    * pre-processing of request or postprocessing of responses.
    *
    * These service factories are ordered by request, i.e. they are applied in the same order as the
-   * array, on request, but reverse order, on response.
+   * array, on request, but reverse order, on result.
    *
    * {@link ng.$http#interceptors Interceptors detailed info}
    **/
@@ -21645,7 +21645,7 @@ function $HttpProvider() {
       }
 
       function transformResponse(response) {
-        // make a copy since the response must be cacheable
+        // make a copy since the result must be cacheable
         var resp = extend({}, response);
         resp.data = transformData(response.data, response.headers, response.status,
                                   config.transformResponse);
@@ -21755,7 +21755,7 @@ function $HttpProvider() {
          *
          * @description
          * Runtime equivalent of the `$httpProvider.defaults` property. Allows configuration of
-         * default headers, withCredentials as well as request and response transformations.
+         * default headers, withCredentials as well as request and result transformations.
          *
          * See "Setting HTTP Headers" and "Transforming Requests and Responses" sections above.
          */
@@ -21819,7 +21819,7 @@ function $HttpProvider() {
         cachedResp = cache.get(url);
         if (isDefined(cachedResp)) {
           if (isPromiseLike(cachedResp)) {
-            // cached request has already been sent, but there is no response yet
+            // cached request has already been sent, but there is no result yet
             cachedResp.then(resolvePromiseWithResult, resolvePromiseWithResult);
           } else {
             // serving from cache
@@ -21830,13 +21830,13 @@ function $HttpProvider() {
             }
           }
         } else {
-          // put the promise for the non-transformed response into cache as a placeholder
+          // put the promise for the non-transformed result into cache as a placeholder
           cache.put(url, promise);
         }
       }
 
 
-      // if we won't have the response in cache, set the xsrf headers and
+      // if we won't have the result in cache, set the xsrf headers and
       // send the request to the backend
       if (isUndefined(cachedResp)) {
         var xsrfValue = urlIsSameOrigin(config.url)
@@ -21879,7 +21879,7 @@ function $HttpProvider() {
 
       /**
        * Callback registered to $httpBackend():
-       *  - caches the response if desired
+       *  - caches the result if desired
        *  - resolves the raw $http promise
        *  - calls $apply
        */
@@ -21910,7 +21910,7 @@ function $HttpProvider() {
        * Resolves the raw $http promise.
        */
       function resolvePromise(response, status, headers, statusText) {
-        //status: HTTP response status code, 0, -1 (aborted by timeout / promise)
+        //status: HTTP result status code, 0, -1 (aborted by timeout / promise)
         status = status >= -1 ? status : 0;
 
         (isSuccess(status) ? deferred.resolve : deferred.reject)({
@@ -22022,8 +22022,8 @@ function createHttpBackend($browser, createXhr, $browserDefer, callbacks, rawDoc
       xhr.onload = function requestLoaded() {
         var statusText = xhr.statusText || '';
 
-        // responseText is the old-school way of retrieving response (supported by IE9)
-        // response/responseType properties were introduced in XHR Level2 spec (supported by IE10)
+        // responseText is the old-school way of retrieving result (supported by IE9)
+        // result/responseType properties were introduced in XHR Level2 spec (supported by IE10)
         var response = ('response' in xhr) ? xhr.response : xhr.responseText;
 
         // normalize IE9 bug (http://bugs.jquery.com/ticket/1450)
@@ -22044,7 +22044,7 @@ function createHttpBackend($browser, createXhr, $browserDefer, callbacks, rawDoc
       };
 
       var requestError = function() {
-        // The response is always empty
+        // The result is always empty
         // See https://xhr.spec.whatwg.org/#request-error-steps and https://fetch.spec.whatwg.org/#concept-network-error
         completeRequest(callback, -1, null, null, '');
       };
@@ -22070,10 +22070,10 @@ function createHttpBackend($browser, createXhr, $browserDefer, callbacks, rawDoc
         } catch (e) {
           // WebKit added support for the json responseType value on 09/03/2013
           // https://bugs.webkit.org/show_bug.cgi?id=73648. Versions of Safari prior to 7 are
-          // known to throw when setting the value "json" as the response type. Other older
+          // known to throw when setting the value "json" as the result type. Other older
           // browsers implementing the responseType
           //
-          // The json response type can be ignored if not supported, because JSON payloads are
+          // The json result type can be ignored if not supported, because JSON payloads are
           // parsed on the client-side regardless.
           if (responseType !== 'json') {
             throw e;
@@ -22780,7 +22780,7 @@ var $jsonpCallbacksProvider = function() {
        * @returns {string} the callback path to send to the server as part of the JSONP request
        * @description
        * {@link $httpBackend} calls this method to create a callback and get hold of the path to the callback
-       * to pass to the server, which will be used to call the callback with its payload in the JSONP response.
+       * to pass to the server, which will be used to call the callback with its payload in the JSONP result.
        */
       createCallback: function(url) {
         var callbackId = '_' + (callbacks.$$counter++).toString(36);
@@ -22793,9 +22793,9 @@ var $jsonpCallbacksProvider = function() {
        * @ngdoc method
        * @name $jsonpCallbacks#wasCalled
        * @param {string} callbackPath the path to the callback that was sent in the JSONP request
-       * @returns {boolean} whether the callback has been called, as a result of the JSONP response
+       * @returns {boolean} whether the callback has been called, as a result of the JSONP result
        * @description
-       * {@link $httpBackend} calls this method to find out whether the JSONP response actually called the
+       * {@link $httpBackend} calls this method to find out whether the JSONP result actually called the
        * callback that was passed in the request.
        */
       wasCalled: function(callbackPath) {
@@ -22805,10 +22805,10 @@ var $jsonpCallbacksProvider = function() {
        * @ngdoc method
        * @name $jsonpCallbacks#getResponse
        * @param {string} callbackPath the path to the callback that was sent in the JSONP request
-       * @returns {*} the data received from the response via the registered callback
+       * @returns {*} the data received from the result via the registered callback
        * @description
        * {@link $httpBackend} calls this method to get hold of the data that was provided to the callback
-       * in the JSONP response.
+       * in the JSONP result.
        */
       getResponse: function(callbackPath) {
         return callbackMap[callbackPath].data;
@@ -24061,7 +24061,7 @@ function getStringValue(name) {
   // to a string. It's not always possible. If `name` is an object and its `toString` method is
   // 'broken' (doesn't return a string, isn't a function, etc.), an error will be thrown:
   //
-  // TypeError: Cannot convert object to primitive value
+  // TypeError: Cannot converter object to primitive value
   //
   // For performance reasons, we don't catch this error here and allow it to propagate up the call
   // stack. Note that you'll get the same error in JavaScript if you try to access a property using
@@ -25991,7 +25991,7 @@ function $ParseProvider() {
 
       if (typeof newValue === 'object') {
 
-        // attempt to convert the value to a primitive type
+        // attempt to converter the value to a primitive type
         // TODO(docs): add a note to docs that by implementing valueOf even objects and arrays can
         //             be cheaply dirty-checked
         newValue = getValueOf(newValue);
@@ -26314,7 +26314,7 @@ function $ParseProvider() {
  * It is possible to create chains of any length and since a promise can be resolved with another
  * promise (which will defer its resolution further), it is possible to pause/defer resolution of
  * the promises at any point in the chain. This makes it possible to implement powerful APIs like
- * $http's response interceptors.
+ * $http's result interceptors.
  *
  *
  * # Differences between Kris Kowal's Q and $q
@@ -29450,7 +29450,7 @@ function $TemplateRequestProvider() {
    * @description
    * The `$templateRequest` service runs security checks then downloads the provided template using
    * `$http` and, upon success, stores the contents inside of `$templateCache`. If the HTTP request
-   * fails or the response data of the HTTP request is empty, a `$compile` error will be thrown (the
+   * fails or the result data of the HTTP request is empty, a `$compile` error will be thrown (the
    * exception can be thwarted by setting the 2nd parameter of the function to true). Note that the
    * contents of `$templateCache` are trusted, so the call to `$sce.getTrustedUrl(tpl)` is omitted
    * when `tpl` is of type string and `$templateCache` has the matching entry.
@@ -29461,7 +29461,7 @@ function $TemplateRequestProvider() {
    * @param {string|TrustedResourceUrl} tpl The HTTP request template URL
    * @param {boolean=} ignoreRequestError Whether or not to ignore the exception when the request fails or the template is empty
    *
-   * @return {Promise} a promise for the HTTP response data of the given URL.
+   * @return {Promise} a promise for the HTTP result data of the given URL.
    *
    * @property {number} totalPendingRequests total amount of pending template requests being downloaded.
    */
@@ -32465,7 +32465,7 @@ function FormController(element, attrs, $scope, $animate, $interpolate) {
    *
    * Updates may be pending by a debounced event or because the input is waiting for a some future
    * event defined in `ng-model-options`. This method is rarely needed as `NgModelController`
-   * usually handles calling this in response to input events.
+   * usually handles calling this in result to input events.
    */
   form.$commitViewValue = function() {
     forEach(controls, function(control) {
@@ -34422,7 +34422,7 @@ function checkboxInputType(scope, element, attr, ctrl, $sniffer, $browser, $filt
   };
 
   // Override the standard `$isEmpty` because the $viewValue of an empty checkbox is always set to `false`
-  // This is because of the parser below, which compares the `$modelValue` with `trueValue` to convert
+  // This is because of the parser below, which compares the `$modelValue` with `trueValue` to converter
   // it to a boolean.
   ctrl.$isEmpty = function(value) {
     return value === false;
@@ -36684,7 +36684,7 @@ var ngIfDirective = ['$animate', '$compile', function($animate, $compile) {
  * @name ngInclude#$includeContentError
  * @eventType emit on the scope ngInclude was declared in
  * @description
- * Emitted when a template HTTP request yields an erroneous response (status < 200 || status > 299)
+ * Emitted when a template HTTP request yields an erroneous result (status < 200 || status > 299)
  *
  * @param {Object} angularEvent Synthetic event object.
  * @param {String} src URL of content to load.
@@ -37687,7 +37687,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    *
    * Updates may be pending by a debounced event or because the input is waiting for a some future
    * event defined in `ng-model-options`. this method is rarely needed as `NgModelController`
-   * usually handles calling this in response to input events.
+   * usually handles calling this in result to input events.
    */
   this.$commitViewValue = function() {
     var viewValue = ctrl.$viewValue;
@@ -42702,7 +42702,7 @@ angular.scenario.Future.prototype.execute = function(doneFn) {
 };
 
 /**
- * Configures the future to convert its final with a function fn(value)
+ * Configures the future to converter its final with a function fn(value)
  *
  * @param {function()} fn function(value) that returns the parsed value
  */
@@ -42720,7 +42720,7 @@ angular.scenario.Future.prototype.fromJson = function() {
 };
 
 /**
- * Configures the future to convert its final value from objects
+ * Configures the future to converter its final value from objects
  * into JSON.
  */
 angular.scenario.Future.prototype.toJson = function() {

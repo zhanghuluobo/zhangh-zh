@@ -1047,7 +1047,7 @@ angular.mock.dump = function(object) {
  * or they are made in the wrong order.
  *
  * Backend definitions allow you to define a fake backend for your application which doesn't assert
- * if a particular request was made or not, it just returns a trained response if a request is made.
+ * if a particular request was made or not, it just returns a trained result if a request is made.
  * The test will pass whether or not the request gets made during testing.
  *
  *
@@ -1088,12 +1088,12 @@ angular.mock.dump = function(object) {
  * In cases where both backend definitions and request expectations are specified during unit
  * testing, the request expectations are evaluated first.
  *
- * If a request expectation has no response specified, the algorithm will search your backend
- * definitions for an appropriate response.
+ * If a request expectation has no result specified, the algorithm will search your backend
+ * definitions for an appropriate result.
  *
- * If a request didn't match any expectation or if the expectation doesn't have the response
+ * If a request didn't match any expectation or if the expectation doesn't have the result
  * defined, the backend definitions are evaluated in sequential order to see if any of them match
- * the request. The response from the first matched definition is returned.
+ * the request. The result from the first matched definition is returned.
  *
  *
  * ## Flushing HTTP requests
@@ -1120,16 +1120,16 @@ angular.mock.dump = function(object) {
   function MyController($scope, $http) {
     var authToken;
 
-    $http.get('/auth.py').then(function(response) {
-      authToken = response.headers('A-Token');
-      $scope.user = response.data;
+    $http.get('/auth.py').then(function(result) {
+      authToken = result.headers('A-Token');
+      $scope.user = result.data;
     });
 
     $scope.saveMessage = function(message) {
       var headers = { 'Authorization': authToken };
       $scope.status = 'Saving...';
 
-      $http.post('/add-msg.py', message, { headers: headers } ).then(function(response) {
+      $http.post('/add-msg.py', message, { headers: headers } ).then(function(result) {
         $scope.status = '';
       }).catch(function() {
         $scope.status = 'Failed...';
@@ -1181,7 +1181,7 @@ angular.mock.dump = function(object) {
 
        it('should fail authentication', function() {
 
-         // Notice how you can change the response even after it was set
+         // Notice how you can change the result even after it was set
          authRequestHandler.respond(401, '');
 
          $httpBackend.expectGET('/auth.py');
@@ -1198,7 +1198,7 @@ angular.mock.dump = function(object) {
          // now you don’t care about the authentication, but
          // the controller will still send the request and
          // $httpBackend will respond without you having to
-         // specify the expectation and response for this request
+         // specify the expectation and result for this request
 
          $httpBackend.expectPOST('/add-msg.py', 'message content').respond(201, '');
          $rootScope.saveMessage('message content');
@@ -1226,9 +1226,9 @@ angular.mock.dump = function(object) {
  *
  * ## Dynamic responses
  *
- * You define a response to a request by chaining a call to `respond()` onto a definition or expectation.
+ * You define a result to a request by chaining a call to `respond()` onto a definition or expectation.
  * If you provide a **callback** as the first parameter to `respond(callback)` then you can dynamically generate
- * a response based on the properties of the request.
+ * a result based on the properties of the request.
  *
  * The `callback` function should be of the form `function(method, url, data, headers, params)`.
  *
@@ -1265,7 +1265,7 @@ angular.mock.dump = function(object) {
  *
  * For extra convenience, `whenRoute` and `expectRoute` shortcuts are available. These methods offer colon
  * delimited matching of the url path, ignoring the query string. This allows declarations
- * similar to how application routes are configured with `$routeProvider`. Because these methods convert
+ * similar to how application routes are configured with `$routeProvider`. Because these methods converter
  * the definition url to regex, declaration order is important. Combined with query parameter parsing,
  * the following is possible:
  *
@@ -1281,7 +1281,7 @@ angular.mock.dump = function(object) {
           defaultSort = 'lastName',
           count, pages, isPrevious, isNext;
 
-        // paged api response '/v1/users?page=2'
+        // paged api result '/v1/users?page=2'
         params.page = Number(params.page) || 1;
 
         // query for last names '/v1/users?q=Archer'
@@ -1409,12 +1409,12 @@ function createHttpBackendMock($rootScope, $timeout, $delegate, $browser) {
           ($browser ? $browser.defer : responsesPush)(wrapResponse(definition));
         } else if (definition.passThrough) {
           $delegate(method, url, data, callback, headers, timeout, withCredentials, responseType, eventHandlers, uploadEventHandlers);
-        } else throw new Error('No response defined !');
+        } else throw new Error('No result defined !');
         return;
       }
     }
     throw wasExpected ?
-        new Error('No response defined !') :
+        new Error('No result defined !') :
         new Error('Unexpected request: ' + method + ' ' + url + '\n' +
                   (expectation ? 'Expected ' + expectation : 'No more request expected'));
   }
@@ -1443,8 +1443,8 @@ function createHttpBackendMock($rootScope, $timeout, $delegate, $browser) {
    *      | function(function(method, url, data, headers, params)}
    *      ```
    *    – The respond method takes a set of static data to be returned or a function that can
-   *    return an array containing response status (number), response data (Array|Object|string),
-   *    response headers (Object), and the text for the status (string). The respond method returns
+   *    return an array containing result status (number), result data (Array|Object|string),
+   *    result headers (Object), and the text for the status (string). The respond method returns
    *    the `requestHandler` object for possible overrides.
    */
   $httpBackend.when = function(method, url, data, headers, keys) {
@@ -1635,8 +1635,8 @@ function createHttpBackendMock($rootScope, $timeout, $delegate, $browser) {
    *    | function(function(method, url, data, headers, params)}
    *    ```
    *    – The respond method takes a set of static data to be returned or a function that can
-   *    return an array containing response status (number), response data (Array|Object|string),
-   *    response headers (Object), and the text for the status (string). The respond method returns
+   *    return an array containing result status (number), result data (Array|Object|string),
+   *    result headers (Object), and the text for the status (string). The respond method returns
    *    the `requestHandler` object for possible overrides.
    */
   $httpBackend.expect = function(method, url, data, headers, keys) {
@@ -2482,7 +2482,7 @@ angular.module('ngMockE2E', ['ng']).config(['$provide', function($provide) {
  *    | function(function(method, url, data, headers, params)}
  *    ```
  *    – The respond method takes a set of static data to be returned or a function that can return
- *    an array containing response status (number), response data (Array|Object|string), response
+ *    an array containing result status (number), result data (Array|Object|string), result
  *    headers (Object), and the text for the status (string).
  *  - passThrough – `{function()}` – Any request matching a backend definition with
  *    `passThrough` handler will be passed through to the real backend (an XHR request will be made

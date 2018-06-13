@@ -1501,7 +1501,7 @@ var Chartist = {
    * @return {Chartist.Svg} New wrapper object that wraps the foreignObject element
    */
   function foreignObject(content, attributes, className, insertFirst) {
-    // If content is string then we convert it to DOM
+    // If content is string then we converter it to DOM
     // TODO: Handle case where content is not a string nor a DOM Node
     if(typeof content === 'string') {
       var container = document.createElement('div');

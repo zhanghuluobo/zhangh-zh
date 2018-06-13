@@ -7,41 +7,61 @@
     <meta name="description" content="Kode is a Premium Bootstrap Admin Template, It's responsive, clean coded and mobile friendly">
     <meta name="keywords" content="bootstrap, admin, dashboard, flat admin template, responsive," />
     <title>ZH</title>
-
-    <!-- ========== Css Files ========== -->
-    <link href="/zh/css/root.css" rel="stylesheet">
-    <style type="text/css">
-        body{background: #F5F5F5;}
-    </style>
 </head>
 <body>
-
     <div class="login-form">
-        <form action="login.html">
-            <div class="top">
-                <img src="/zh/img/ZH_icon.png" alt="icon" class="icon">
+        <form ng-app="login_app" ng-controller="login_Controller">
+        <div class="top">
+            <img src="/zh/static/img/ZH_icon.png" alt="icon" class="icon">
+        </div>
+        <div class="form-area">
+            <div class="group">
+                <input type="text" class="form-control" placeholder="账号" ng-model="user.account">
+                <i class="fa fa-user"></i>
             </div>
-            <div class="form-area">
-                <div class="group">
-                    <input type="text" class="form-control" placeholder="Username">
-                    <i class="fa fa-user"></i>
-                </div>
-                <div class="group">
-                    <input type="password" class="form-control" placeholder="Password">
-                    <i class="fa fa-key"></i>
-                </div>
-                <div class="checkbox checkbox-primary">
-                    <input id="checkbox101" type="checkbox" checked>
-                    <label for="checkbox101"> Remember Me</label>
-                </div>
-                <button type="submit" class="btn btn-default btn-block">LOGIN</button>
+            <div class="group">
+                <input type="password" class="form-control" placeholder="密码" ng-model="user.password">
+                <i class="fa fa-key"></i>
             </div>
-        </form>
+            <div class="checkbox checkbox-primary">
+                <input id="checkbox101" type="checkbox" checked>
+                <label for="checkbox101">记住密码</label>
+            </div>
+            <button type="submit" class="btn btn-default btn-block" ng-click="login()"> 登录 </button>
+        </div>
+    </form>
         <div class="footer-links row">
-            <div class="col-xs-6"><a href="#"><i class="fa fa-external-link"></i> Register Now</a></div>
-            <div class="col-xs-6 text-right"><a href="#"><i class="fa fa-lock"></i> Forgot password</a></div>
+            <div class="col-xs-6"><a href="#"><i class="fa fa-external-link"></i> 注册 </a></div>
+            <div class="col-xs-6 text-right"><a href="#"><i class="fa fa-lock"></i> 忘记密码 </a></div>
         </div>
     </div>
-
 </body>
 </html>
+<!-- ========== Css Files ========== -->
+<link href="/zh/static/css/root.css" rel="stylesheet">
+<style type="text/css">
+    body{background: #F5F5F5;}
+</style>
+<!-- ========== Js Files ========== -->
+<script src="/zh/static/angular-1.5.8/angular.js"></script>
+<script type="text/javascript">
+    var login_app = angular.module('login_app',[]);
+    login_app.controller('login_Controller',function ($scope,$http) {
+        $scope.login = function(){
+            $http({
+                method:'post',
+                data:{
+                    account:$scope.user.account,
+                    password:$scope.user.password
+                },
+                url:'/zh/system/userInfo/myTest'
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+            });
+        }
+
+    })
+
+</script>

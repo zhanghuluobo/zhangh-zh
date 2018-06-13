@@ -1156,7 +1156,7 @@ Licensed under the MIT license.
 
                             if (f) {
                                 if (f.number && val != null) {
-                                    val = +val; // convert to number
+                                    val = +val; // converter to number
                                     if (isNaN(val))
                                         val = null;
                                     else if (val == Infinity)

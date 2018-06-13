@@ -63,7 +63,7 @@ var complexOptions = [ // names of options that are objects whose properties sho
 // Recursively combines all passed-in option-hash arguments into a new single option-hash.
 // Given option-hashes are ordered from lowest to highest priority.
 function mergeOptions() {
-	var chain = Array.prototype.slice.call(arguments); // convert to a real array
+	var chain = Array.prototype.slice.call(arguments); // converter to a real array
 	var complexVals = {}; // hash for each complex option's combined values
 	var i, name;
 	var combinedVal;
@@ -860,7 +860,7 @@ function makeMoment(args, parseAsUTC, parseZone) {
 
 		if (isSingleString) {
 			if (ambigDateOfMonthRegex.test(input)) {
-				// accept strings like '2014-05', but convert to the first of the month
+				// accept strings like '2014-05', but converter to the first of the month
 				input += '-01';
 				args = [ input ]; // for when we pass it on to moment's constructor
 				isAmbigTime = true;
@@ -6322,7 +6322,7 @@ TimeGrid.mixin({
 			right = 1 - forwardCoord;
 		}
 
-		props.zIndex = seg.level + 1; // convert from 0-base to 1-based
+		props.zIndex = seg.level + 1; // converter from 0-base to 1-based
 		props.left = left * 100 + '%';
 		props.right = right * 100 + '%';
 
@@ -6664,10 +6664,10 @@ var View = fc.View = Class.extend({
 		}
 		else { // needs to have a time?
 			if (!intervalStart.hasTime()) {
-				intervalStart = this.calendar.rezoneDate(intervalStart); // convert to current timezone, with 00:00
+				intervalStart = this.calendar.rezoneDate(intervalStart); // converter to current timezone, with 00:00
 			}
 			if (!intervalEnd.hasTime()) {
-				intervalEnd = this.calendar.rezoneDate(intervalEnd); // convert to current timezone, with 00:00
+				intervalEnd = this.calendar.rezoneDate(intervalEnd); // converter to current timezone, with 00:00
 			}
 		}
 
@@ -6761,7 +6761,7 @@ var View = fc.View = Class.extend({
 		var end = range.end;
 
 		if (!end.hasTime()) { // all-day?
-			end = end.clone().subtract(1); // convert to inclusive. last ms of previous day
+			end = end.clone().subtract(1); // converter to inclusive. last ms of previous day
 		}
 
 		return formatRange(range.start, end, formatStr, separator, this.opt('isRTL'));
@@ -8533,7 +8533,7 @@ var momComputableOptions = {
 	// Produces format strings like "h:mma" -> "6:00pm"
 	mediumTimeFormat: function(momOptions) { // can't be called `timeFormat` because collides with option
 		return momOptions.longDateFormat('LT')
-			.replace(/\s*a$/i, 'a'); // convert AM/PM/am/pm to lowercase. remove any spaces beforehand
+			.replace(/\s*a$/i, 'a'); // converter AM/PM/am/pm to lowercase. remove any spaces beforehand
 	},
 
 	// Produces format strings like "h(:mm)a" -> "6pm" / "6:30pm"
@@ -8541,7 +8541,7 @@ var momComputableOptions = {
 		return momOptions.longDateFormat('LT')
 			.replace(':mm', '(:mm)')
 			.replace(/(\Wmm)$/, '($1)') // like above, but for foreign langs
-			.replace(/\s*a$/i, 'a'); // convert AM/PM/am/pm to lowercase. remove any spaces beforehand
+			.replace(/\s*a$/i, 'a'); // converter AM/PM/am/pm to lowercase. remove any spaces beforehand
 	},
 
 	// Produces format strings like "h(:mm)t" -> "6p" / "6:30p"
@@ -8549,7 +8549,7 @@ var momComputableOptions = {
 		return momOptions.longDateFormat('LT')
 			.replace(':mm', '(:mm)')
 			.replace(/(\Wmm)$/, '($1)') // like above, but for foreign langs
-			.replace(/\s*a$/i, 't'); // convert to AM/PM/am/pm to lowercase one-letter. remove any spaces beforehand
+			.replace(/\s*a$/i, 't'); // converter to AM/PM/am/pm to lowercase one-letter. remove any spaces beforehand
 	},
 
 	// Produces format strings like "ha" / "H" -> "6pm" / "18"
@@ -8557,7 +8557,7 @@ var momComputableOptions = {
 		return momOptions.longDateFormat('LT')
 			.replace(':mm', '')
 			.replace(/(\Wmm)$/, '') // like above, but for foreign langs
-			.replace(/\s*a$/i, 'a'); // convert AM/PM/am/pm to lowercase. remove any spaces beforehand
+			.replace(/\s*a$/i, 'a'); // converter AM/PM/am/pm to lowercase. remove any spaces beforehand
 	},
 
 	// Produces format strings like "h:mm" -> "6:30" (with no AM/PM)
@@ -8945,7 +8945,7 @@ function EventManager(options) { // assumed to be a calendar
 					for (i = 0; i < eventInputs.length; i++) {
 						eventInput = eventInputs[i];
 
-						if (isArraySource) { // array sources have already been convert to Event Objects
+						if (isArraySource) { // array sources have already been converter to Event Objects
 							abstractEvent = eventInput;
 						}
 						else {
@@ -9123,7 +9123,7 @@ function EventManager(options) { // assumed to be a calendar
 				source.className = [];
 			}
 
-			// for array sources, we convert to standard Event Objects up front
+			// for array sources, we converter to standard Event Objects up front
 			if ($.isArray(source.events)) {
 				source.origArray = source.events; // for removeEventSource
 				source.events = $.map(source.events, function(eventInput) {
@@ -9640,7 +9640,7 @@ function EventManager(options) { // assumed to be a calendar
 
 	// Modifies an array of events in the following ways (operations are in order):
 	// - clear the event's `end`
-	// - convert the event to allDay
+	// - converter the event to allDay
 	// - add `dateDelta` to the start and end
 	// - add `durationDelta` to the event's duration
 	// - assign `miscProps` to the event
