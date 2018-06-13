@@ -1,5 +1,6 @@
 package com.huluobo.module.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.huluobo.core.request.RequestData;
 import com.huluobo.module.entity.UserInfo;
 import org.springframework.stereotype.Controller;
@@ -17,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 public class UserInfoController {
 
     @RequestMapping(path = "myTest")
-    public String myTest(@RequestBody RequestData requestData){
-        JsonObject data = requestData.getData();
+    public String myTest(RequestData requestData){
+        JSONObject data = requestData.getData();
         return data.toString();
     }
 

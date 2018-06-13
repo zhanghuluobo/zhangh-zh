@@ -1,5 +1,7 @@
 package com.huluobo.core.request;
 
+import com.alibaba.fastjson.JSONObject;
+
 import javax.json.JsonObject;
 import java.io.Serializable;
 
@@ -14,7 +16,7 @@ public class RequestData implements Serializable {
     private static final long serialVersionUID = 7041434687641213076L;
     private String ip;
     private String url;
-    private JsonObject data;
+    private JSONObject data;
 
     public RequestData() {
     }
@@ -35,11 +37,11 @@ public class RequestData implements Serializable {
         this.url = url;
     }
 
-    public JsonObject getData() {
+    public JSONObject getData() {
         return data;
     }
 
-    public void setData(JsonObject data) {
+    public void setData(JSONObject data) {
         this.data = data;
     }
 }
