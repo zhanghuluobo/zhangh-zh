@@ -10,8 +10,9 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurationSupport {
 
+    @Bean
     public RequestMappingHandlerAdapter requestMappingHandlerAdapter(FastJsonHttpMessageConverter fastJsonHttpMessageConverter,RequestDataMessageConverter requestDataMessageConverter){
-        return
+        return DefaultMvcAdapterConfig.requestMappingHandlerAdapter(super.requestMappingHandlerAdapter(),fastJsonHttpMessageConverter,requestDataMessageConverter);
     }
 
     @Bean
