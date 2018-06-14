@@ -51,8 +51,9 @@
             $http({
                 method:'post',
                 data:{
-                    account:$scope.user.account,
-                    password:$scope.user.password
+                    requestData:123
+                    // account:$scope.user.account,
+                    // password:$scope.user.password
                 },
                 url:'/zh/system/userInfo/myTest'
             }).then(function successCallback(response) {

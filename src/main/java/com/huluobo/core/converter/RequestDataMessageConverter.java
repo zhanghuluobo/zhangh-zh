@@ -46,7 +46,7 @@ public class RequestDataMessageConverter extends AbstractGenericHttpMessageConve
 
     protected boolean supports(Class<?> clazz){
         return clazz.isAssignableFrom(Map.class);
-    };
+    }
 
     @Override
     protected void writeInternal(Object o, Type type, HttpOutputMessage httpOutputMessage) throws IOException, HttpMessageNotWritableException {
