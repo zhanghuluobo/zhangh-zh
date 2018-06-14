@@ -1,25 +1,55 @@
 package com.huluobo.core.converter;
 
-import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.huluobo.core.request.RequestData;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.AbstractHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
+import org.springframework.util.StreamUtils;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.Map;
 
-public class TestConverter extends FastJsonHttpMessageConverter {
+/**
+ * 自定义RequestData消息转换器
+ *
+ * Author zhangh
+ * Date 2018/6/14 22:35
+ *
+ */
 
-    @Override
-    protected Object readInternal(Class<?> clazz, HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
-        //fastJson的版本影响是否可以获取
-        System.out.println("--------------请求进入到消息转化器-------------------");
-        return super.readInternal(clazz, inputMessage);
+
+public class TestConverter extends AbstractHttpMessageConverter<Object> {
+
+    //设置contentType
+    public TestConverter() {
+        super(new MediaType("application","json", Charset.forName("UTF-8")));
     }
 
     @Override
-    protected void writeInternal(Object obj, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
-        System.out.println("--------------响应进入到消息转化器-------------------");
-        super.writeInternal(obj, outputMessage);
+    protected boolean supports(Class<?> clazz) {
+        return clazz.isAssignableFrom(clazz);
     }
+
+    @Override
+    protected Object readInternal(Class<?> clazz, HttpInputMessage httpInputMessage) throws IOException, HttpMessageNotReadableException {
+        String temp = StreamUtils.copyToString(httpInputMessage.getBody(), Charset.forName("UTF-8"));
+        Map<String,Object> map = (Map<String,Object>)JSON.parse(temp);
+        RequestData requestData = new RequestData();
+        requestData.setData(new JSONObject(map));
+        return requestData;
+    }
+
+    @Override
+    protected void writeInternal(Object o, HttpOutputMessage httpOutputMessage) throws IOException, HttpMessageNotWritableException {
+
+    }
+
+
+
 }
