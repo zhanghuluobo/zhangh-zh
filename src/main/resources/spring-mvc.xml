@@ -17,11 +17,21 @@
     <!-- 实际开发中使用<mvc:annotation-driven/>代替注解适配器和映射器,设置配置方案 -->
     <mvc:annotation-driven>
         <!-- 设置不使用默认的消息转换器 -->
-        <mvc:message-converters register-defaults="false">
-            <!-- 配置Spring的转换器 -->
-            <bean class="com.huluobo.core.converter.RequestDataMessageConverter"/>
-        </mvc:message-converters>
+        <mvc:argument-resolvers>
+            <bean class="com.huluobo.core.converter.RequestDataArgumentResolver">
+                <constructor-arg>
+                    <list>
+                        <bean class="com.huluobo.core.converter.RequestDataMessageConverter"></bean>
+                    </list>
+                </constructor-arg>
+            </bean>
+        </mvc:argument-resolvers>
+        <!--<mvc:message-converters register-defaults="false">-->
+            <!--&lt;!&ndash; 配置Spring的转换器 &ndash;&gt;-->
+            <!--<bean class="com.huluobo.core.converter.RequestDataMessageConverter"/>-->
+        <!--</mvc:message-converters>-->
     </mvc:annotation-driven>
+    <!--<mvc:annotation-driven/>-->
 
 
 
@@ -30,11 +40,5 @@
 
     <mvc:resources mapping="/static/**" location="/WEB-INF/static/"/>
 
-    <!-- 配置jsp 显示ViewResolver -->
-    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
-        <!--<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>-->
-        <!--<property name="prefix" value="/WEB-INF/views/"/>-->
-        <!--<property name="suffix" value=".html"/>-->
-    <!--</bean>-->
 
 </beans>

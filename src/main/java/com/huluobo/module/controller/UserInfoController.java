@@ -11,7 +11,7 @@ import java.util.Map;
 public class UserInfoController {
 
 
-    @RequestMapping(path = "myTest",method = RequestMethod.POST)
+    @RequestMapping(path = "myTest")
     public ResultData myTest(RequestData requestData){
         Map<String,Object> map = requestData.getData();
         Object account = map.get("account");

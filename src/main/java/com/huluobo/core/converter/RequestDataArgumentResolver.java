@@ -23,7 +23,8 @@ public class RequestDataArgumentResolver extends RequestResponseBodyMethodProces
     }
 
     public boolean supportsParameter(MethodParameter parameter) {
-        return parameter.getParameterType().equals(RequestData.class);
+        boolean equals = parameter.getParameterType().equals(RequestData.class);
+        return equals;
     }
 
 
