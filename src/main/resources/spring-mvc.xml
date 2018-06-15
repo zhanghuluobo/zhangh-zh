@@ -19,23 +19,10 @@
         <!-- 设置不使用默认的消息转换器 -->
         <mvc:message-converters register-defaults="false">
             <!-- 配置Spring的转换器 -->
-            <!-- 配置fastjson中实现HttpMessageConverter接口的转换器 -->
-            <bean id="fastJsonHttpMessageConverter"  class="com.huluobo.core.converter.TestConverter">
-                <!-- 加入支持的媒体类型：返回contentType -->
-                <property name="supportedMediaTypes">
-                    <list>
-                        <!-- 这里顺序不能反，一定先写text/html,不然ie下会出现下载提示 -->
-                        <value>text/html;charset=UTF-8</value>
-                        <value>application/json;charset=UTF-8</value>
-                    </list>
-                </property>
-            </bean>
-            <!--<bean class="org.springframework.http.converter.StringHttpMessageConverter"/>-->
-            <!--<bean class="org.springframework.http.converter.xml.XmlAwareFormHttpMessageConverter"/>-->
-            <!--<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>-->
-            <!--<bean class="org.springframework.http.converter.BufferedImageHttpMessageConverter"/>-->
+            <bean class="com.huluobo.core.converter.RequestDataMessageConverter"/>
         </mvc:message-converters>
     </mvc:annotation-driven>
+
 
 
     <!-- 静态资源默认servlet配置 -->

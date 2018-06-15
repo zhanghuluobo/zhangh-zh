@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 
 
-public class HttpKitUtil {
+public class RequestResponseUtil {
 
-    public HttpKitUtil() {
+    public RequestResponseUtil() {
     }
 
     public static HttpServletRequest getRequest(){

@@ -25,6 +25,20 @@
         <property name = "driverClassName" value = "${jdbc.driverClassName}" />
     </bean >
 
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="customArgumentResolvers">
+            <list>
+                <bean class="com.huluobo.core.converter.RequestDataArgumentResolver">
+                    <constructor-arg>
+                        <list>
+                            <bean class="com.huluobo.core.converter.RequestDataMessageConverter"></bean>
+                        </list>
+                    </constructor-arg>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
     <!-- 配置SqlSessionFactory对象 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <!-- 注入数据库连接池 -->
@@ -51,5 +65,7 @@
 
     <!-- 配置基于注解的声明式事务 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
+
+
 
 </beans>

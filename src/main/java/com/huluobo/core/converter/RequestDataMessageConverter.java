@@ -1,35 +1,41 @@
 package com.huluobo.core.converter;
 
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.huluobo.core.request.RequestData;
-import com.huluobo.core.utils.HttpKitUtil;
-import com.xiaoleilu.hutool.io.IoUtil;
+import com.huluobo.core.result.ResultData;
+import com.huluobo.core.utils.RequestResponseUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.AbstractGenericHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
-
-import java.util.*;
-import java.util.Map.Entry;
+import org.springframework.util.StreamUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.nio.charset.Charset;
+import java.util.*;
 
 /**
- * 请求参数转换类
- * @author zhanghui
- * @since 2018/6/13 19:15
- * 版权所有 ZH
- **/
+ * 自定义RequestData消息转换器
+ *
+ * Author zhangh
+ * Date 2018/6/14 22:35
+ *
+ */
+
 
 public class RequestDataMessageConverter extends AbstractGenericHttpMessageConverter<Object> {
 
+    Logger logger = LoggerFactory.getLogger(RequestDataMessageConverter.class);
+
     public RequestDataMessageConverter() {
+//        super(new MediaType("application","json", Charset.forName("UTF-8")));
     }
 
     public boolean canRead(Type type, Class<?> clazz, MediaType mediaType){
@@ -37,64 +43,55 @@ public class RequestDataMessageConverter extends AbstractGenericHttpMessageConve
     }
 
     public boolean canWrite(Type type,Class<?> clazz,MediaType mediaType){
-        return type instanceof Class ? ((Class)type).isAssignableFrom(RequestData.class):false;
+        return type instanceof Class ? ((Class)type).isAssignableFrom(ResultData.class):false;
     }
 
+    //设置ContentType 接受所有类型的请求头
     public List<MediaType> getSupportedMediaTypes(){
         return Collections.singletonList(MediaType.ALL);
     }
 
-    protected boolean supports(Class<?> clazz){
-        return clazz.isAssignableFrom(Map.class);
-    }
 
     @Override
     protected void writeInternal(Object o, Type type, HttpOutputMessage httpOutputMessage) throws IOException, HttpMessageNotWritableException {
+
     }
 
     @Override
-    protected Object readInternal(Class clazz, HttpInputMessage httpInputMessage) throws IOException, HttpMessageNotReadableException {
-        return this.readMap(httpInputMessage);
+    protected Object readInternal(Class<?> clazz, HttpInputMessage httpInputMessage) throws IOException, HttpMessageNotReadableException {
+        String requestBody = StreamUtils.copyToString(httpInputMessage.getBody(),Charset.forName("UTF-8"));
+        logger.debug("RequestBody:"+requestBody);
+        HttpServletRequest request = RequestResponseUtil.getRequest();
+        return this.encapsulationRequestData(requestBody,request);
     }
 
     @Override
-    public Object read(Type type, Class aClass, HttpInputMessage httpInputMessage) throws IOException, HttpMessageNotReadableException {
-        return this.readMap(httpInputMessage);
+    public Object read(Type type, Class<?> clazz, HttpInputMessage httpInputMessage) throws IOException, HttpMessageNotReadableException {
+        return this.readInternal(clazz,httpInputMessage);
     }
 
-    private Object readMap(HttpInputMessage httpInputMessage) throws IOException {
-        String requestBody = IoUtil.read(httpInputMessage.getBody(), "UTF-8");
-        HttpServletRequest request = HttpKitUtil.getRequest();
-        return this.getRequesttData(requestBody,request);
-    }
-
-    private Object getRequesttData(String requestBody, HttpServletRequest request) {
+    private Object encapsulationRequestData(String requestBody, HttpServletRequest request) {
         RequestData requestData = new RequestData();
         requestData.setIp(request.getRemoteHost());
         requestData.setUrl(request.getServletPath());
-        requestData.setData(this.clearWhiteSpace(requestBody));
+        requestData.setData(this.convertRequestBody(requestBody));
         return requestData;
     }
 
-    private JSONObject clearWhiteSpace(String requestBody) {
+    private JSONObject convertRequestBody(String requestBody) {
         JSONObject jsonObject = JSON.parseObject(requestBody);
-        if (jsonObject != null){
-            Set<Entry<String, Object>> entries = jsonObject.entrySet();
-            Iterator<Entry<String, Object>> iterator = entries.iterator();
+        if(jsonObject != null){
+            Set<Map.Entry<String, Object>> entries = jsonObject.entrySet();
+            Iterator<Map.Entry<String, Object>> iterator = entries.iterator();
             while (iterator.hasNext()){
-                Entry<String, Object> next = iterator.next();
+                Map.Entry<String, Object> next = iterator.next();
                 Object value = next.getValue();
-                if(value!=null&&value instanceof String){
+                if(value != null && value instanceof String){
                     String trim = ((String) value).trim();
-                    jsonObject.put(next.getKey(),value);
+                    jsonObject.put(next.getKey(),trim);
                 }
             }
-            return jsonObject;
-        }else {
-            return null;
         }
-
+        return jsonObject;
     }
-
-
 }
