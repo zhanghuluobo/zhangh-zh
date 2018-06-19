@@ -46,6 +46,7 @@ public class RequestDataMessageConverter extends AbstractGenericHttpMessageConve
         return type instanceof Class ? ((Class)type).isAssignableFrom(ResultData.class):false;
     }
 
+
     //设置ContentType 接受所有类型的请求头
     public List<MediaType> getSupportedMediaTypes(){
         return Collections.singletonList(MediaType.ALL);
