@@ -1,7 +1,5 @@
 package com.huluobo.core.result;
 
-import sun.plugin2.message.Serializer;
-
 import java.io.Serializable;
 
 /**
@@ -22,9 +20,6 @@ public class ResultData implements Serializable {
     private Integer code;
     private String msg;
     private Object data;
-
-    public ResultData() {
-    }
 
     public ResultData(Integer code, String msg, Object data) {
         this.code = code;
@@ -62,7 +57,7 @@ public class ResultData implements Serializable {
     }
 
     public static ResultData success(){
-        return success(null);
+        return success("");
     }
 
     //-----------------------------------------------失败-----------------------------------------------
@@ -71,7 +66,7 @@ public class ResultData implements Serializable {
     }
 
     public static ResultData error(){
-        return error(null);
+        return error("");
     }
 
     public static ResultData result(Integer code, String msg, Object data) {

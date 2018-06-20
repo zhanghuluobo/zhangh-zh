@@ -3,7 +3,9 @@ package com.huluobo.core.converter;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.huluobo.core.request.RequestData;
 import org.springframework.core.MethodParameter;
+import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor;
 
 import java.util.List;
@@ -22,9 +24,14 @@ public class RequestDataArgumentResolver extends RequestResponseBodyMethodProces
         super(converters);
     }
 
+
     public boolean supportsParameter(MethodParameter parameter) {
-        boolean equals = parameter.getParameterType().equals(RequestData.class);
-        return equals;
+        return parameter.getParameterType().equals(RequestData.class);
+    }
+
+
+    public boolean supportsReturnType(MethodParameter returnType) {
+        return false;
     }
 
 }

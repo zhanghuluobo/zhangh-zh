@@ -7,16 +7,16 @@ import com.huluobo.core.result.ResultData;
 import com.huluobo.core.utils.RequestResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpInputMessage;
-import org.springframework.http.HttpOutputMessage;
-import org.springframework.http.MediaType;
+import org.springframework.http.*;
 import org.springframework.http.converter.AbstractGenericHttpMessageConverter;
+import org.springframework.http.converter.AbstractHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.util.StreamUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.lang.reflect.Type;
 import java.nio.charset.Charset;
 import java.util.*;
@@ -30,7 +30,7 @@ import java.util.*;
  */
 
 
-public class RequestDataMessageConverter extends AbstractGenericHttpMessageConverter<Object> {
+public class RequestDataMessageConverter extends AbstractHttpMessageConverter<Object> {
 
     Logger logger = LoggerFactory.getLogger(RequestDataMessageConverter.class);
 
@@ -38,24 +38,15 @@ public class RequestDataMessageConverter extends AbstractGenericHttpMessageConve
 //        super(new MediaType("application","json", Charset.forName("UTF-8")));
     }
 
-    public boolean canRead(Type type, Class<?> clazz, MediaType mediaType){
-        return type instanceof Class ? ((Class)type).isAssignableFrom(RequestData.class):false;
-    }
-
-    public boolean canWrite(Type type,Class<?> clazz,MediaType mediaType){
-        return type instanceof Class ? ((Class)type).isAssignableFrom(ResultData.class):false;
-    }
-
-
     //设置ContentType 接受所有类型的请求头
     public List<MediaType> getSupportedMediaTypes(){
         return Collections.singletonList(MediaType.ALL);
     }
 
-
     @Override
-    protected void writeInternal(Object o, Type type, HttpOutputMessage httpOutputMessage) throws IOException, HttpMessageNotWritableException {
-
+    protected boolean supports(Class<?> clazz) {
+        return clazz.isAssignableFrom(RequestData.class);
+        //return false;
     }
 
     @Override
@@ -67,8 +58,8 @@ public class RequestDataMessageConverter extends AbstractGenericHttpMessageConve
     }
 
     @Override
-    public Object read(Type type, Class<?> clazz, HttpInputMessage httpInputMessage) throws IOException, HttpMessageNotReadableException {
-        return this.readInternal(clazz,httpInputMessage);
+    protected void writeInternal(Object o, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
+
     }
 
     private Object encapsulationRequestData(String requestBody, HttpServletRequest request) {
