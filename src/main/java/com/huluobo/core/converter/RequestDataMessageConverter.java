@@ -35,9 +35,9 @@ public class RequestDataMessageConverter extends AbstractHttpMessageConverter<Ob
     Logger logger = LoggerFactory.getLogger(RequestDataMessageConverter.class);
 
     public RequestDataMessageConverter() {
-//        super(new MediaType("application","json", Charset.forName("UTF-8")));
     }
 
+    @Override
     //设置ContentType 接受所有类型的请求头
     public List<MediaType> getSupportedMediaTypes(){
         return Collections.singletonList(MediaType.ALL);
