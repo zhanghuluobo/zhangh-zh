@@ -7,12 +7,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-@Controller
+@RestController
 @RequestMapping(name = "用户管理",path = "/system/userInfo/")
 public class UserInfoController {
 
-
-    @ResponseBody
     @RequestMapping(path = "myTest")
     public ResultData myTest(RequestData requestData){
         Map<String,Object> map = requestData.getData();
