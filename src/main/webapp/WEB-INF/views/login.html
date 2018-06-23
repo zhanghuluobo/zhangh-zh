@@ -1,68 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+﻿<!DOCTYPE HTML>
+<html>
+  <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ZH</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <!--告诉IE使用最新的引擎渲染网页，chrome=1则可以激活Chrome Frame.-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="/zh/static/lib/html5shiv.js"></script>
+    <script type="text/javascript" src="/zh/static/lib/respond.min.js"></script>
+    <![endif]-->
+    <link href="/zh/static/h-ui/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+    <link href="/zh/static/h-ui.admin/css/H-ui.login.css" rel="stylesheet" type="text/css" />
+    <link href="/zh/static/h-ui.admin/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/zh/static/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" type="text/css" />
+    <!--[if IE 6]>
+    <script type="text/javascript" src="/zh/static/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+    <title>后台登录 - ZH</title>
 </head>
 <body>
-    <div class="login-form">
-        <form ng-app="login_app" ng-controller="login_Controller">
-        <div class="top">
-            <img src="/zh/static/img/ZH_icon.png" alt="icon" class="icon">
-        </div>
-        <div class="form-area">
-            <div class="group">
-                <input type="text" class="form-control" placeholder="账号" ng-model="user.account">
-                <i class="fa fa-user"></i>
+    <div class="loginWraper">
+      <div class="loginBox">
+        <div class="loginBox_logo"></div>
+        <div class="loginBox_content">
+          <form action="index.html" method="post">
+            <div class="row cl">
+              <label class="form-label col-xs-3"  style="text-align: right;"><i class="Hui-iconfont">&#xe60d;</i></label>
+              <div class="formControls col-xs-8">
+                <input type="text" placeholder="账户" class="input-text size-L">
+              </div>
             </div>
-            <div class="group">
-                <input type="password" class="form-control" placeholder="密码" ng-model="user.password">
-                <i class="fa fa-key"></i>
+            <div class="row cl">
+              <label class="form-label col-xs-3"  style="text-align: right;"><i class="Hui-iconfont">&#xe60e;</i></label>
+              <div class="formControls col-xs-8">
+                <input type="password" placeholder="密码" class="input-text size-L">
+              </div>
             </div>
-            <div class="checkbox checkbox-primary">
-                <input id="checkbox101" type="checkbox" checked>
-                <label for="checkbox101">记住密码</label>
+            <div class="row cl">
+              <div class="formControls col-xs-6 col-xs-offset-4">
+                <input type="submit" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
+                <input type="reset" class="btn btn-default radius size-L" value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">
+              </div>
             </div>
-            <button type="submit" class="btn btn-default btn-block" ng-click="login()"> 登录 </button>
+          </form>
         </div>
-    </form>
-        <div class="footer-links row">
-            <div class="col-xs-6"><a href="#"><i class="fa fa-external-link"></i> 注册 </a></div>
-            <div class="col-xs-6 text-right"><a href="#"><i class="fa fa-lock"></i> 忘记密码 </a></div>
-        </div>
+      </div>
     </div>
+<script type="text/javascript" src="/zh/static/lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="/zh/static/h-ui/js/H-ui.min.js"></script>
 </body>
 </html>
-<!-- ========== Css Files ========== -->
-<link href="/zh/static/css/root.css" rel="stylesheet">
-<style type="text/css">
-    body{background: #F5F5F5;}
-</style>
-<!-- ========== Js Files ========== -->
-<script src="/zh/static/angular-1.5.8/angular.js"></script>
-<script type="text/javascript">
-    var login_app = angular.module('login_app',[]);
-    login_app.controller('login_Controller',function ($scope,$http) {
-        $scope.login = function(){
-            $http({
-                method:'post',
-                data:{
-                    a:" 1 2 3 ",
-                    b:[
-                        "123","123"
-
-                    ]
-
-                },
-                url:'/zh/system/userInfo/myTest'
-            }).then(function successCallback(response) {
-                // 请求成功执行代码
-            }, function errorCallback(response) {
-                // 请求失败执行代码
-            });
-        }
-
-    })
-
-</script>

@@ -2,7 +2,6 @@ package com.huluobo.module.controller;
 
 import com.huluobo.core.request.RequestData;
 import com.huluobo.core.result.ResultData;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
