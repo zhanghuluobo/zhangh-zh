@@ -23,10 +23,9 @@ import java.util.*;
 
 /**
  * 自定义RequestData消息转换器
- *
+ * <p>
  * Author zhangh
  * Date 2018/6/14 22:35
- *
  */
 
 
@@ -39,7 +38,7 @@ public class RequestDataMessageConverter extends AbstractHttpMessageConverter<Ob
 
     @Override
     //设置ContentType 接受所有类型的请求头
-    public List<MediaType> getSupportedMediaTypes(){
+    public List<MediaType> getSupportedMediaTypes() {
         return Collections.singletonList(MediaType.ALL);
     }
 
@@ -51,10 +50,10 @@ public class RequestDataMessageConverter extends AbstractHttpMessageConverter<Ob
 
     @Override
     protected Object readInternal(Class<?> clazz, HttpInputMessage httpInputMessage) throws IOException, HttpMessageNotReadableException {
-        String requestBody = StreamUtils.copyToString(httpInputMessage.getBody(),Charset.forName("UTF-8"));
-        logger.debug("RequestBody:"+requestBody);
+        String requestBody = StreamUtils.copyToString(httpInputMessage.getBody(), Charset.forName("UTF-8"));
+        logger.debug("RequestBody:" + requestBody);
         HttpServletRequest request = RequestResponseUtil.getRequest();
-        return this.encapsulationRequestData(requestBody,request);
+        return this.encapsulationRequestData(requestBody, request);
     }
 
     @Override
@@ -72,15 +71,15 @@ public class RequestDataMessageConverter extends AbstractHttpMessageConverter<Ob
 
     private JSONObject convertRequestBody(String requestBody) {
         JSONObject jsonObject = JSON.parseObject(requestBody);
-        if(jsonObject != null){
+        if (jsonObject != null) {
             Set<Map.Entry<String, Object>> entries = jsonObject.entrySet();
             Iterator<Map.Entry<String, Object>> iterator = entries.iterator();
-            while (iterator.hasNext()){
+            while (iterator.hasNext()) {
                 Map.Entry<String, Object> next = iterator.next();
                 Object value = next.getValue();
-                if(value != null && value instanceof String){
+                if (value != null && value instanceof String) {
                     String trim = ((String) value).trim();
-                    jsonObject.put(next.getKey(),trim);
+                    jsonObject.put(next.getKey(), trim);
                 }
             }
         }
