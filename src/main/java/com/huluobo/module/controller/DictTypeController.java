@@ -2,7 +2,6 @@ package com.huluobo.module.controller;
 
 import com.huluobo.core.request.RequestData;
 import com.huluobo.core.result.ResultData;
-import com.huluobo.module.entity.UserInfo;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

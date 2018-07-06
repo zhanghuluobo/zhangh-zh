@@ -813,7 +813,7 @@ pre{white-space: pre-wrap}	/*预格式化的文本*/
 	Explain:		.text-水平对齐 （.text-l左对齐|.text-r右对齐|.text-c居中对齐）
 					.va-上下对齐 （.va-t 居上对齐|.va-m 居中对齐|.va-b 居下对齐）
 */
-.text-l{text-align:left}.text-r{text-align:right}.text-c{text-align:center}
+.text-l{text-align:left}.text-r{text-align:right}.text-c{text-align:left}
 .va *{vertical-align:sub!important;*vertical-align:middle!important;_vertical-align:middle!important}
 .va-t{vertical-align:top!important}.va-m{vertical-align:middle!important}.va-b{vertical-align:bottom!important}
 /*3.1.4 定位

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huluobo.module.mapper.DictTypeMapper">
+  <resultMap id="BaseResultMap" type="com.huluobo.module.entity.DictType">
+    <id column="DICT_TYPE_ID" jdbcType="VARCHAR" property="dictTypeId" />
+    <result column="DICT_TYPE_DETAIL" jdbcType="VARCHAR" property="dictTypeDetail" />
+    <result column="EXECUTIVE_STANDARD" jdbcType="VARCHAR" property="executiveStandard" />
+    <result column="CATEGORY" jdbcType="VARCHAR" property="category" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="CREATE_TIME" jdbcType="VARCHAR" property="createTime" />
+    <result column="CREATE_USER" jdbcType="VARCHAR" property="createUser" />
+    <result column="CREATE_IP" jdbcType="VARCHAR" property="createIp" />
+    <result column="STORE_TIME" jdbcType="VARCHAR" property="storeTime" />
+    <result column="STORE_USER" jdbcType="VARCHAR" property="storeUser" />
+    <result column="STORE_IP" jdbcType="VARCHAR" property="storeIp" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    DICT_TYPE_ID, DICT_TYPE_DETAIL, EXECUTIVE_STANDARD, CATEGORY, STATUS, CREATE_TIME, 
+    CREATE_USER, CREATE_IP, STORE_TIME, STORE_USER, STORE_IP
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from syst_dict_type
+    where DICT_TYPE_ID = #{dictTypeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from syst_dict_type
+    where DICT_TYPE_ID = #{dictTypeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huluobo.module.entity.DictType">
+    insert into syst_dict_type (DICT_TYPE_ID, DICT_TYPE_DETAIL, EXECUTIVE_STANDARD, 
+      CATEGORY, STATUS, CREATE_TIME, 
+      CREATE_USER, CREATE_IP, STORE_TIME, 
+      STORE_USER, STORE_IP)
+    values (#{dictTypeId,jdbcType=VARCHAR}, #{dictTypeDetail,jdbcType=VARCHAR}, #{executiveStandard,jdbcType=VARCHAR}, 
+      #{category,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=VARCHAR}, 
+      #{createUser,jdbcType=VARCHAR}, #{createIp,jdbcType=VARCHAR}, #{storeTime,jdbcType=VARCHAR}, 
+      #{storeUser,jdbcType=VARCHAR}, #{storeIp,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huluobo.module.entity.DictType">
+    insert into syst_dict_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dictTypeId != null">
+        DICT_TYPE_ID,
+      </if>
+      <if test="dictTypeDetail != null">
+        DICT_TYPE_DETAIL,
+      </if>
+      <if test="executiveStandard != null">
+        EXECUTIVE_STANDARD,
+      </if>
+      <if test="category != null">
+        CATEGORY,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createUser != null">
+        CREATE_USER,
+      </if>
+      <if test="createIp != null">
+        CREATE_IP,
+      </if>
+      <if test="storeTime != null">
+        STORE_TIME,
+      </if>
+      <if test="storeUser != null">
+        STORE_USER,
+      </if>
+      <if test="storeIp != null">
+        STORE_IP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dictTypeId != null">
+        #{dictTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="dictTypeDetail != null">
+        #{dictTypeDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="executiveStandard != null">
+        #{executiveStandard,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createIp != null">
+        #{createIp,jdbcType=VARCHAR},
+      </if>
+      <if test="storeTime != null">
+        #{storeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="storeUser != null">
+        #{storeUser,jdbcType=VARCHAR},
+      </if>
+      <if test="storeIp != null">
+        #{storeIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huluobo.module.entity.DictType">
+    update syst_dict_type
+    <set>
+      <if test="dictTypeDetail != null">
+        DICT_TYPE_DETAIL = #{dictTypeDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="executiveStandard != null">
+        EXECUTIVE_STANDARD = #{executiveStandard,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        CATEGORY = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createIp != null">
+        CREATE_IP = #{createIp,jdbcType=VARCHAR},
+      </if>
+      <if test="storeTime != null">
+        STORE_TIME = #{storeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="storeUser != null">
+        STORE_USER = #{storeUser,jdbcType=VARCHAR},
+      </if>
+      <if test="storeIp != null">
+        STORE_IP = #{storeIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DICT_TYPE_ID = #{dictTypeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huluobo.module.entity.DictType">
+    update syst_dict_type
+    set DICT_TYPE_DETAIL = #{dictTypeDetail,jdbcType=VARCHAR},
+      EXECUTIVE_STANDARD = #{executiveStandard,jdbcType=VARCHAR},
+      CATEGORY = #{category,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      CREATE_IP = #{createIp,jdbcType=VARCHAR},
+      STORE_TIME = #{storeTime,jdbcType=VARCHAR},
+      STORE_USER = #{storeUser,jdbcType=VARCHAR},
+      STORE_IP = #{storeIp,jdbcType=VARCHAR}
+    where DICT_TYPE_ID = #{dictTypeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

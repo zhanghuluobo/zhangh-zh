@@ -25,27 +25,6 @@
         <property name = "driverClassName" value = "${jdbc.driverClassName}" />
     </bean >
 
-    <!--不起作用-->
-    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">-->
-        <!--<property name="messageConverters">-->
-            <!--<list>-->
-                <!--<bean class="com.huluobo.core.converter.RequestDataMessageConverter"></bean>-->
-            <!--</list>-->
-        <!--</property>-->
-
-        <!--<property name="customArgumentResolvers">-->
-            <!--<list>-->
-                <!--<bean class="com.huluobo.core.converter.RequestDataArgumentResolver">-->
-                    <!--<constructor-arg>-->
-                        <!--<list>-->
-                            <!--<bean class="com.huluobo.core.converter.RequestDataMessageConverter"></bean>-->
-                        <!--</list>-->
-                    <!--</constructor-arg>-->
-                <!--</bean>-->
-            <!--</list>-->
-        <!--</property>-->
-    <!--</bean>-->
-
     <!-- 配置SqlSessionFactory对象 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <!-- 注入数据库连接池 -->
