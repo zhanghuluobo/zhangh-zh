@@ -17,15 +17,5 @@ import java.util.ArrayList;
 @RequestMapping(name = "字典类型控制器", path = "/system/dictType/")
 public class DictTypeController {
 
-    @RequestMapping(name = "获取字典管理列表", path = "queryDictType")
-    public ResultData queryDictType(RequestData requestData) {
-        ArrayList<UserInfo> userInfos = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            UserInfo userInfo = new UserInfo();
-            userInfo.setAccount("000" + i);
-            userInfo.setPassword("123456");
-            userInfos.add(userInfo);
-        }
-        return ResultData.success(userInfos);
-    }
+
 }
