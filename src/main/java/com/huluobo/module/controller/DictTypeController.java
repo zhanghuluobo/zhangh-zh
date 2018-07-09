@@ -17,5 +17,10 @@ import java.util.ArrayList;
 @RequestMapping(name = "字典类型控制器", path = "/system/dictType/")
 public class DictTypeController {
 
+    @RequestMapping(name = "字典类型-增加",path = "insertDictType")
+    public ResultData insertDictType(RequestData requestData){
+
+        return ResultData.success();
+    }
 
 }

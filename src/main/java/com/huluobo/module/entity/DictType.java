@@ -5,6 +5,10 @@ public class DictType {
 
     private String dictTypeDetail;
 
+    private String dictTypeCode;
+
+    private String dictTypeName;
+
     private String executiveStandard;
 
     private String category;
@@ -37,6 +41,22 @@ public class DictType {
 
     public void setDictTypeDetail(String dictTypeDetail) {
         this.dictTypeDetail = dictTypeDetail;
+    }
+
+    public String getDictTypeCode() {
+        return dictTypeCode;
+    }
+
+    public void setDictTypeCode(String dictTypeCode) {
+        this.dictTypeCode = dictTypeCode;
+    }
+
+    public String getDictTypeName() {
+        return dictTypeName;
+    }
+
+    public void setDictTypeName(String dictTypeName) {
+        this.dictTypeName = dictTypeName;
     }
 
     public String getExecutiveStandard() {
