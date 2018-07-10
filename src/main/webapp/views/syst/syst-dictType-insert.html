@@ -112,9 +112,16 @@
 					"category":$scope.category,
 					"status":$scope.status
 				}
-			}).then(function (data) {
-                var index = parent.layer.getFrameIndex(window.name);
-                parent.layer.close(index);
+			}).then(function (resultData) {
+			   	var code = resultData.data.code;
+			    if(1==code){
+                    layer.msg(resultData.data.msg);
+                    var index = parent.layer.getFrameIndex(window.name);
+                    parent.layer.close(index);
+                }else {
+                    layer.msg(resultData.data.msg);
+				}
+
             })
         }
     })

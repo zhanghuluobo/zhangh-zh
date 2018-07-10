@@ -20,7 +20,7 @@ public class DictTypeController {
     @RequestMapping(name = "字典类型-增加",path = "insertDictType")
     public ResultData insertDictType(RequestData requestData){
 
-        return ResultData.success();
+        return ResultData.success("新增成功");
     }
 
 }

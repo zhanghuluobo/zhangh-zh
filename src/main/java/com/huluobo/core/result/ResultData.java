@@ -12,8 +12,8 @@ import java.io.Serializable;
 
 public class ResultData implements Serializable {
 
-    private static final Integer SUCCESS_CODE = 1000;
-    private static final Integer ERROR_CODE = -1000;
+    private static final Integer SUCCESS_CODE = 1;
+    private static final Integer ERROR_CODE = -1;
     private static final String SUCCESS_MSG = "操作成功";
     private static final String ERROR_MSG = "操作失败";
 
