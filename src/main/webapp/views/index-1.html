@@ -12,17 +12,28 @@
 <body class="easyui-layout">
     <div data-options="region:'north',border:false" style="height:60px;background:#399bff;">
         <div class="applogo">
-            <span class="logo">
-                ZH
-            </span>
+            <span class="logo">ZH</span>
+            <span class="logo_sub">V1.0</span>
         </div>
 
     </div>
     <div data-options="region:'west',title:'主目录'"  style="width:250px;">
-        west content
+        <ul id="tt"></ul>
     </div>
     <!--<div data-options="region:'east',collapsed:true,title:'East'" style="width:150px;">east region</div>-->
     <div data-options="region:'south',border:false" style="height:50px;background: #3d464d;">south region</div>
     <div data-options="region:'center'"></div>
 </body>
+<script type="text/javascript">
+    $('#tt').tree({
+        url: '/zhangh/system/dictType/insertDictType',
+        loadFilter: function(data){
+        if (data.d){
+            return data.d;
+        } else {
+            return data;
+        }
+    }
+    });
+</script>
 </html>

@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * Date 2018/6/27 21:53
  */
 @RestController
-@RequestMapping(name = "字典类型控制器", path = "/system/dictType/")
+@RequestMapping(name = "字典类型", path = "/system/dictType/")
 public class DictTypeController {
 
     @RequestMapping(name = "字典类型-增加",path = "insertDictType")
