@@ -18,7 +18,9 @@
 
 </div>
 <div data-options="region:'west',title:'主目录'" style="width:250px;">
-    <ul id="menuTree"></ul>
+    <div class="easyui-panel" style="padding: 5px ;height: 100%">
+        <ul id="menuTree"></ul>
+    </div>
 </div>
 <!--<div data-options="region:'east',collapsed:true,title:'East'" style="width:150px;">east region</div>-->
 <div data-options="region:'south',border:false" style="height:50px;background: #3d464d;">south region</div>
@@ -28,35 +30,41 @@
     $(document).ready(function () {
         //初始化树组件
         $('#menuTree').tree();
+        var myData = {}
         $.ajax({
             url:'/zhangh/system/menu/queryMenu',
             type:'post',
-            data:'{"name":"手机","price":999}',
+            data:JSON.stringify(myData),
             dataType:'json',
             contentType: 'application/json; charset=utf-8',
             success:function (resultData) {
                 $('#menuTree').tree({
-                    data:resultData.data
+                    data:resultData.data,
+                    onClick: function(node){
+                        //状态为关闭而且非叶子节点
+                        if(node.state=='closed'&&(!$("#menuTree").tree('isLeaf',node.target))){
+                            //点击文字展开菜单
+                            $(this).tree('expand',node.target);
+                        }else{
+                            $(this).tree('collapse',node.target);
+                        }
+                    }
                 });
             }
         })
-        // $('#tt').tree({
-        //     url: '/zhangh/system/menu/queryMenu',
-        //     method: 'post',
-        //     animate:'true',
-        //
-        //     queryParams:{
-        //         "a":"123"
-        //     },
-        //     loadFilter: function (data) {
-        //         if (data.d) {
-        //             return data.d;
-        //         } else {
-        //             return data;
-        //         }
-        //     }
-        // });
     });
+    // onClick: function(node){
+    //     if(node.url != null){
+    //         parent.frames["content"].location.href="${ctx}" rel="external nofollow" + node.url;
+    //     }else{
+    //         if(node.state=='closed'&&(!$("#tree").tree('isLeaf',node.target))){ //状态为关闭而且非叶子节点
+    //             $(this).tree('expand',node.target);//点击文字展开菜单
+    //         }else{
+    //             $(this).tree('collapse',node.target);
+    //         }
+    //     }
+    //
+    // }
 
 </script>
 </html>

@@ -26,32 +26,16 @@ public class MenuController {
         //-------------------------模拟数据-------------------------
         Map<String, Object> map1 = new HashMap<>();
         map1.put("id",1);
-        map1.put("text","Folder1");
-        map1.put("iconCls","icon-save");
+        map1.put("text","系统管理");
+        map1.put("state","closed");
+        map1.put("iconCls","icon-blank");
         List<Map<String, Object>> list1 = new ArrayList<>();
         Map<String, Object> map11 = new HashMap<>();
-        Map<String, Object> map12 = new HashMap<>();
-        map11.put("text","java");
-        map12.put("text","c");
+        map11.put("text","字典管理");
         list1.add(map11);
-        list1.add(map12);
         map1.put("children",list1);
-        //-------------------------模拟数据-------------------------
-        Map<String, Object> map2 = new HashMap<>();
-        map1.put("id",2);
-        map1.put("text","Folder2");
-        map1.put("iconCls","icon-save");
-        List<Map<String, Object>> list2 = new ArrayList<>();
-        Map<String, Object> map21 = new HashMap<>();
-        Map<String, Object> map22 = new HashMap<>();
-        map21.put("text","java");
-        map22.put("text","c");
-        list2.add(map21);
-        list2.add(map22);
-        map2.put("children",list2);
-
         list.add(map1);
-        list.add(map2);
+        //-------------------------模拟数据-------------------------
         return ResultData.success(list);
     }
 }
