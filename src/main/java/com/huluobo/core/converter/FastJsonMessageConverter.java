@@ -1,6 +1,7 @@
 package com.huluobo.core.converter;
 
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.huluobo.core.utils.MediaTypeUtil;
 import org.springframework.http.MediaType;
 
 import java.util.ArrayList;
@@ -22,8 +23,7 @@ public class FastJsonMessageConverter extends FastJsonHttpMessageConverter {
     @Override
     //设置ContentType 接受所有类型的请求头
     public List<MediaType> getSupportedMediaTypes(){
-        List<MediaType> mediaTypeList = new ArrayList<>();
-        mediaTypeList.add(MediaType.ALL);
-        return Collections.singletonList(MediaType.ALL);
+        List<MediaType> mediaTypeList = MediaTypeUtil.getAllMediaTypeList();
+        return mediaTypeList;
     }
 }

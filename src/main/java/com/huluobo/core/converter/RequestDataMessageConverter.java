@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.huluobo.core.request.RequestData;
 import com.huluobo.core.result.ResultData;
+import com.huluobo.core.utils.MediaTypeUtil;
 import com.huluobo.core.utils.RequestResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,7 +40,8 @@ public class RequestDataMessageConverter extends AbstractHttpMessageConverter<Ob
     @Override
     //设置ContentType 接受所有类型的请求头
     public List<MediaType> getSupportedMediaTypes() {
-        return Collections.singletonList(MediaType.ALL);
+        List<MediaType> mediaTypeList = MediaTypeUtil.getAllMediaTypeList();
+        return mediaTypeList;
     }
 
     @Override
