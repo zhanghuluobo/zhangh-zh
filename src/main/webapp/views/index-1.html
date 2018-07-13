@@ -17,14 +17,19 @@
     </div>
 
 </div>
-<div data-options="region:'west',title:'主目录'" style="width:250px;">
-    <div class="easyui-panel" style="padding: 5px ;height: 100%">
+<div data-options="region:'west',title:'主目录',border:true" style="width:250px;">
+    <div class="easyui-panel" style="padding: 5px;border: none;">
         <ul id="menuTree"></ul>
     </div>
 </div>
-<!--<div data-options="region:'east',collapsed:true,title:'East'" style="width:150px;">east region</div>-->
-<div data-options="region:'south',border:false" style="height:50px;background: #3d464d;">south region</div>
-<div data-options="region:'center'"></div>
+<div data-options="region:'center',border:false">
+    <div id="tabs" class="easyui-tabs" data-options="fit:true, border:false"></div>
+</div>
+<div data-options="region:'south',border:false" style="height:50px;background: #3d464d;">
+    <div class="appfoot">
+        <span class="foot">zhangh</span>
+    </div>
+</div>
 </body>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -32,39 +37,43 @@
         $('#menuTree').tree();
         var myData = {}
         $.ajax({
-            url:'/zhangh/system/menu/queryMenu',
-            type:'post',
-            data:JSON.stringify(myData),
-            dataType:'json',
+            url: '/zhangh/system/menu/queryMenu',
+            type: 'post',
+            data: JSON.stringify(myData),
+            dataType: 'json',
             contentType: 'application/json; charset=utf-8',
-            success:function (resultData) {
+            success: function (resultData) {
                 $('#menuTree').tree({
-                    data:resultData.data,
-                    onClick: function(node){
-                        //状态为关闭而且非叶子节点
-                        if(node.state=='closed'&&(!$("#menuTree").tree('isLeaf',node.target))){
-                            //点击文字展开菜单
-                            $(this).tree('expand',node.target);
-                        }else{
-                            $(this).tree('collapse',node.target);
+                    data: resultData.data,
+                    onClick: function (node) {
+                        //判断是否需要展打开tabs
+                        if (node.url != null && node.url != '') {
+                            // 检验是否存在tab,如果存在，则打开已有的
+                            if ($("#tabs").tabs('exists', node.text)) {
+                                $("#tabs").tabs('select', node.text);
+                            } else {
+                                // 如果没有此tab，创建一个新的tab
+                                $("#tabs").tabs('add', {
+                                    title: node.text,
+                                    content: node.text,
+                                    closable: true
+                                })
+                            }
+                        } else {
+                            //状态为关闭而且非叶子节点
+                            if (node.state == 'closed' && (!$("#menuTree").tree('isLeaf', node.target))) {
+                                //点击文字展开菜单
+                                $(this).tree('expand', node.target);
+                            } else {
+                                $(this).tree('collapse', node.target);
+                            }
                         }
                     }
                 });
             }
         })
-    });
-    // onClick: function(node){
-    //     if(node.url != null){
-    //         parent.frames["content"].location.href="${ctx}" rel="external nofollow" + node.url;
-    //     }else{
-    //         if(node.state=='closed'&&(!$("#tree").tree('isLeaf',node.target))){ //状态为关闭而且非叶子节点
-    //             $(this).tree('expand',node.target);//点击文字展开菜单
-    //         }else{
-    //             $(this).tree('collapse',node.target);
-    //         }
-    //     }
-    //
-    // }
 
+
+    });
 </script>
 </html>
