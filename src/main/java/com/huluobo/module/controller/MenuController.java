@@ -32,12 +32,14 @@ public class MenuController {
         map1.put("url","");
         List<Map<String, Object>> list1 = new ArrayList<>();
         Map<String, Object> map11 = new HashMap<>();
+        map11.put("id",11);
         map11.put("text","字典管理1");
-        map11.put("url","123");
+        map11.put("url","views/index.html");
         map11.put("iconCls","icon-blank");
         Map<String, Object> map12 = new HashMap<>();
+        map12.put("id",12);
         map12.put("text","字典管理2");
-        map12.put("url","123");
+        map12.put("url","455");
         map12.put("iconCls","icon-blank");
         list1.add(map11);
         list1.add(map12);
