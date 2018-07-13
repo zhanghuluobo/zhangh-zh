@@ -42,65 +42,71 @@
     <div class="appfoot">
         <span class="foot">zhangh</span>
     </div>
-</div>
-</body>
-<script type="text/javascript">
-    $(document).ready(function () {
-        //初始化树组件
-        $('#menuTree').tree();
-        var myData = {}
-        $.ajax({
-            url: '/zhangh/system/menu/queryMenu',
-            type: 'post',
-            data: JSON.stringify(myData),
-            dataType: 'json',
-            contentType: 'application/json; charset=utf-8',
-            success: function (resultData) {
-                $('#menuTree').tree({
-                    data: resultData.data,
-                    onClick: function (node) {
-                        var url = node.url;
-                        if (url != null && url != '') {
-                            var title = node.text;
-                            //开启选项卡
-                            addTab(url,title,true);
-                        } else {
-                            //状态为关闭而且非叶子节点
-                            if (node.state == 'closed' && (!$("#menuTree").tree('isLeaf', node.target))) {
-                                //点击文字展开菜单
-                                $(this).tree('expand', node.target);
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //初始化树组件
+            $('#menuTree').tree();
+            var myData = {}
+            $.ajax({
+                url: '/zhangh/system/menu/queryMenu',
+                type: 'post',
+                data: JSON.stringify(myData),
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                success: function (resultData) {
+                    $('#menuTree').tree({
+                        data: resultData.data,
+                        onClick: function (node) {
+                            var url = node.url;
+                            if (url != null && url != '') {
+                                var title = node.text;
+                                //开启选项卡
+                                addTab(url,title,true);
                             } else {
-                                $(this).tree('collapse', node.target);
+                                //状态为关闭而且非叶子节点
+                                if (node.state == 'closed' && (!$("#menuTree").tree('isLeaf', node.target))) {
+                                    //点击文字展开菜单
+                                    $(this).tree('expand', node.target);
+                                } else {
+                                    $(this).tree('collapse', node.target);
+                                }
                             }
                         }
+                    });
+                }
+            });
+
+            addTab('views/welcome.html',"工作台",false);
+        });
+        //新增选项卡
+        function addTab(url,title,closable) {
+            // 检验是否存在tab,如果存在，则打开已有的
+            if ($("#tabs").tabs('exists', title)) {
+                //选中tab并显示
+                $("#tabs").tabs('select', title);
+
+                var tab = $('#tabs').tabs('getSelected');
+                // debugger
+                $('#tabs').tabs('update',{
+                    tab: tab,
+                    type: 'all',
+                    options: {
+                        // title: 'New Title',
+                        href: '123'  // the new content URL
                     }
                 });
+                tab.panel('refresh');
+            } else {
+                // 如果没有此tab，创建一个新的tab
+                $("#tabs").tabs('add', {
+                    title: title,
+                    href: url,
+                    closable: closable
+                })
             }
-        });
-
-        addTab('views/welcome.html',"工作台",false);
-    });
-    //新增选项卡
-    function addTab(url,title,closable) {
-        // 检验是否存在tab,如果存在，则打开已有的
-        if ($("#tabs").tabs('exists', title)) {
-            //选中tab并显示
-            $("#tabs").tabs('select', title);
-            var currTab = $('#tabs').tabs('getSelected');
-            //刷新此列表
-            $("#tabs").tabs('update',{
-                tab:currTab,
-                href:url
-            })
-        } else {
-            // 如果没有此tab，创建一个新的tab
-            $("#tabs").tabs('add', {
-                title: title,
-                href: url,
-                closable: closable
-            })
         }
-    }
 
-</script>
+    </script>
+</div>
+</body>
 </html>
