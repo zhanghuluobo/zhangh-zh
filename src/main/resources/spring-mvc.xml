@@ -29,7 +29,6 @@
             <bean id="fastJsonHttpMessageConverter" class="com.huluobo.core.converter.FastJsonMessageConverter" />
         </mvc:message-converters>
     </mvc:annotation-driven>
-    <!--<mvc:annotation-driven/>-->
 
     <!-- 静态资源默认servlet配置 -->
     <mvc:default-servlet-handler/>

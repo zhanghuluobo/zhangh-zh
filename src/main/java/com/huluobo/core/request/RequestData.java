@@ -44,4 +44,10 @@ public class RequestData implements Serializable {
     public void setData(JSONObject data) {
         this.data = data;
     }
+
+    //获取字符串类型
+    public String getString(String key){
+        return this.data.getString(key);
+    }
+
 }

@@ -84,15 +84,12 @@
             if ($("#tabs").tabs('exists', title)) {
                 //选中tab并显示
                 $("#tabs").tabs('select', title);
-
                 var tab = $('#tabs').tabs('getSelected');
-                // debugger
                 $('#tabs').tabs('update',{
                     tab: tab,
                     type: 'all',
                     options: {
-                        // title: 'New Title',
-                        href: '123'  // the new content URL
+                        href: url
                     }
                 });
                 tab.panel('refresh');

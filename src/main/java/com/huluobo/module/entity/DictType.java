@@ -13,7 +13,7 @@ public class DictType {
 
     private String category;
 
-    private Integer status;
+    private Integer dictTypeStatus;
 
     private String createTime;
 
@@ -75,12 +75,12 @@ public class DictType {
         this.category = category;
     }
 
-    public Integer getStatus() {
-        return status;
+    public Integer getDictTypeStatus() {
+        return dictTypeStatus;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setDictTypeStatus(Integer dictTypeStatus) {
+        this.dictTypeStatus = dictTypeStatus;
     }
 
     public String getCreateTime() {
