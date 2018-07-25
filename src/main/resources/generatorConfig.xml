@@ -22,13 +22,13 @@
         </javaTypeResolver>
 
         <!--自动生成的实体的存放包路径 -->
-        <javaModelGenerator targetPackage="com.huluobo.module.entity" targetProject="src/main/java"/>
+        <javaModelGenerator targetPackage="com.huluobo.module.entity" targetProject="D:\huluobo"/>
 
         <!--自动生成的*Mapper.xml文件存放路径 -->
-        <sqlMapGenerator targetPackage="com.huluobo.module.mapper.mapping" targetProject="src/main/java"/>
+        <sqlMapGenerator targetPackage="com.huluobo.module.mapper.mapping" targetProject="D:\huluobo"/>
 
         <!--自动生成的*Mapper.java存放路径 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.huluobo.module.mapper" targetProject="src/main/java"/>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.huluobo.module.mapper" targetProject="D:\huluobo"/>
 
 
         <!--数据库表-->
