@@ -36,10 +36,10 @@ h2 {
 }
 .applogo {
     width: 250px;
-    height: 50px;
+    height: 45px;
     background: rgba(0, 0, 0, 0.14);
     position: relative;
-    padding: 10px 0 0 0px;
+    padding: 5px 0 0 0px;
     float: left;
     text-align: center;
 }
@@ -56,4 +56,9 @@ h2 {
     font-size: 14px;
     font-weight: bold;
     font-family: 'Montserrat', sans-serif;
+}
+
+.bodyContainer{
+    width: 95%;
+    margin: 20px auto;
 }

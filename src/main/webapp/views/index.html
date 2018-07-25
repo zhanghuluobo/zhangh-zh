@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>ZH V1.0</title>
-    <link rel="stylesheet" type="text/css" href="/zhangh/static/easyui/themes/metro/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/zhangh/static/easyui/themes/material-teal/easyui.css">
     <link rel="stylesheet" type="text/css" href="/zhangh/static/easyui/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="/zhangh/static/easyui/huluobo.css">
     <script type="text/javascript" src="/zhangh/static/easyui/jquery.min.js"></script>
@@ -19,7 +19,7 @@
 </head>
 <body class="easyui-layout">
 <!--######################################### 上部 #################################################-->
-<div data-options="region:'north',border:false" style="height:60px;background:#399bff;">
+<div data-options="region:'north',border:false" style="height:50px;background:#399bff;">
     <div class="applogo">
         <span class="logo">ZH</span>
         <span class="logo_sub">V1.0</span>
@@ -42,68 +42,68 @@
     <div class="appfoot">
         <span class="foot">zhangh</span>
     </div>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            //初始化树组件
-            $('#menuTree').tree();
-            var myData = {}
-            $.ajax({
-                url: '/zhangh/system/menu/queryMenu',
-                type: 'post',
-                data: JSON.stringify(myData),
-                dataType: 'json',
-                contentType: 'application/json; charset=utf-8',
-                success: function (resultData) {
-                    $('#menuTree').tree({
-                        data: resultData.data,
-                        onClick: function (node) {
-                            var url = node.url;
-                            if (url != null && url != '') {
-                                var title = node.text;
-                                //开启选项卡
-                                addTab(url,title,true);
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //初始化树组件
+        $('#menuTree').tree();
+        var myData = {}
+        $.ajax({
+            url: '/zhangh/system/menu/queryMenu',
+            type: 'post',
+            data: JSON.stringify(myData),
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            success: function (resultData) {
+                $('#menuTree').tree({
+                    data: resultData.data,
+                    onClick: function (node) {
+                        var url = node.url;
+                        if (url != null && url != '') {
+                            var title = node.text;
+                            //开启选项卡
+                            addTab(url,title,true);
+                        } else {
+                            //状态为关闭而且非叶子节点
+                            if (node.state == 'closed' && (!$("#menuTree").tree('isLeaf', node.target))) {
+                                //点击文字展开菜单
+                                $(this).tree('expand', node.target);
                             } else {
-                                //状态为关闭而且非叶子节点
-                                if (node.state == 'closed' && (!$("#menuTree").tree('isLeaf', node.target))) {
-                                    //点击文字展开菜单
-                                    $(this).tree('expand', node.target);
-                                } else {
-                                    $(this).tree('collapse', node.target);
-                                }
+                                $(this).tree('collapse', node.target);
                             }
                         }
-                    });
-                }
-            });
-
-            addTab('views/welcome.html',"工作台",false);
-        });
-        //新增选项卡
-        function addTab(url,title,closable) {
-            // 检验是否存在tab,如果存在，则打开已有的
-            if ($("#tabs").tabs('exists', title)) {
-                //选中tab并显示
-                $("#tabs").tabs('select', title);
-                var tab = $('#tabs').tabs('getSelected');
-                $('#tabs').tabs('update',{
-                    tab: tab,
-                    type: 'all',
-                    options: {
-                        href: url
                     }
                 });
-                tab.panel('refresh');
-            } else {
-                // 如果没有此tab，创建一个新的tab
-                $("#tabs").tabs('add', {
-                    title: title,
-                    href: url,
-                    closable: closable
-                })
             }
-        }
+        });
 
-    </script>
-</div>
+        addTab('views/welcome.html',"工作台",false);
+    });
+    //新增选项卡
+    function addTab(url,title,closable) {
+        // 检验是否存在tab,如果存在，则打开已有的
+        if ($("#tabs").tabs('exists', title)) {
+            //选中tab并显示
+            $("#tabs").tabs('select', title);
+            var tab = $('#tabs').tabs('getSelected');
+            $('#tabs').tabs('update',{
+                tab: tab,
+                type: 'all',
+                options: {
+                    href: url
+                }
+            });
+            tab.panel('refresh');
+        } else {
+            // 如果没有此tab，创建一个新的tab
+            $("#tabs").tabs('add', {
+                title: title,
+                href: url,
+                closable: closable
+            })
+        }
+    }
+
+</script>
 </body>
 </html>
