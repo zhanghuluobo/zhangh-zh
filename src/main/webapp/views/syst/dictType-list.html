@@ -2,12 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="/zhangh/static/easyui/themes/material-teal/easyui.css">
-    <link rel="stylesheet" type="text/css" href="/zhangh/static/easyui/themes/icon.css">
-    <link rel="stylesheet" type="text/css" href="/zhangh/static/easyui/themes/color.css">
-    <link rel="stylesheet" type="text/css" href="/zhangh/static/easyui/huluobo.css">
-    <script type="text/javascript" src="/zhangh/static/easyui/jquery.min.js"></script>
-    <script type="text/javascript" src="/zhangh/static/easyui/jquery.easyui.min.js"></script>
 </head>
 <body>
     <div class="bodyContainer">
@@ -90,7 +84,7 @@
 
         //新增
         function insertDictType(){
-            var myData = $('#dictTypeForm').serialize();
+            var myData = $('#dictTypeForm').serializeJson();
             $.ajax({
                 url: '/zhangh/system/dictType/insertDictType',
                 type: 'post',
