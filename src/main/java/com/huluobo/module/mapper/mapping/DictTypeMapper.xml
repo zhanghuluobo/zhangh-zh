@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huluobo.module.mapper.DictTypeMapper">
 
-  <!--查询字典类型列表-->
+    <!--查询字典类型列表-->
     <select id="queryDictType" parameterType="string" resultType="map">
         SELECT
             T1.DICT_TYPE_ID AS dictTypeId,
@@ -21,5 +21,25 @@
         </where>
     </select>
 
+    <!--新增字典类型列表-->
+    <insert id="insertDictType" parameterType="dictType">
+        INSERT INTO
+            syst_dict_type
+        VALUES (
+            #{dictTypeId},
+            #{dictTypeDetail},
+            #{dictTypeCode},
+            #{dictTypeName},
+            #{executiveStandard},
+            #{category},
+            #{dictTypeStatus},
+            #{createTime},
+            #{createUser},
+            #{createIp},
+            #{storeTime},
+            #{storeUser},
+            #{storeIp}
+        )
+    </insert>
 
 </mapper>

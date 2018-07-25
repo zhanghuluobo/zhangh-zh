@@ -45,9 +45,18 @@ public class RequestData implements Serializable {
         this.data = data;
     }
 
-    //获取字符串类型
+    //-----------------------------------------------------扩展-----------------------------------------------------
     public String getString(String key){
         return this.data.getString(key);
     }
+
+    public <T> T parase(Class<T> clazz){
+        return this.data.toJavaObject(clazz);
+    }
+
+    public <T> T parase(String key ,Class<T> clazz){
+        return this.data.getObject(key,clazz);
+    }
+
 
 }

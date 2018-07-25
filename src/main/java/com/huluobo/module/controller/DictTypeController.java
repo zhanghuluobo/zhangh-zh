@@ -1,7 +1,9 @@
 package com.huluobo.module.controller;
 
+import com.huluobo.core.constants.ResultConstant;
 import com.huluobo.core.request.RequestData;
 import com.huluobo.core.result.ResultData;
+import com.huluobo.module.entity.DictType;
 import com.huluobo.module.service.IDictTypeService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,10 +26,24 @@ public class DictTypeController {
     @Resource(name = "dictTypeService")
     private IDictTypeService dictTypeService;
 
+    /**
+     * 字典类型-增加
+     *
+     * @author zhanghui
+     * @since 2018/7/25 15:03
+     * 版权所有 ZH
+     * @param
+     * @return
+     **/
     @RequestMapping(name = "字典类型-增加",path = "insertDictType")
     public ResultData insertDictType(RequestData requestData){
-
-        return ResultData.success("新增成功");
+        DictType dictType = requestData.parase(DictType.class);
+        Integer i = this.dictTypeService.insertDictType(dictType);
+        if(i>=0){
+            return ResultData.success(ResultConstant.INSERT_SUCCESS);
+        }else {
+            return ResultData.error(ResultConstant.INSERT_FAIL);
+        }
     }
 
     /**
