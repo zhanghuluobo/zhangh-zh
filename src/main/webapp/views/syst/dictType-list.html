@@ -108,13 +108,7 @@
             success: function (resultData) {
                 var code = resultData.code;
                 $.messager.show({
-                    msg: resultData.msg,
-                    showType:'fade',
-                    style:{
-                        right:0,
-                        top:'50px',
-                        left:""
-                    }
+                    msg: resultData.msg
                 });
                 if (1 == code) {
                     $('#dictType').dialog('close');
