@@ -2,13 +2,15 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/mvc
-       http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!-- 扫描web相关的bean -->
     <context:component-scan base-package="com.huluobo.module.controller"/>
@@ -32,8 +34,17 @@
 
     <!-- 静态资源默认servlet配置 -->
     <mvc:default-servlet-handler/>
-
     <!--<mvc:resources mapping="/static/**" location="/WEB-INF/static/"/>-->
+
+    <!--定义切面-->
+    <bean id="requestDataAop" class="com.huluobo.core.aop.RequestDataAop"/>
+    <aop:config>
+        <aop:aspect ref="requestDataAop">
+            <!--定义切点-->
+            <aop:pointcut id="requestDataPointCut" expression="execution(* com.huluobo.module.controller.*.*(..))"/>
+            <aop:around method="requestDataTemporary" pointcut-ref="requestDataPointCut"></aop:around>
+        </aop:aspect>
+    </aop:config>
 
 
 </beans>

@@ -1,6 +1,7 @@
 package com.huluobo.module.controller;
 
 import com.huluobo.core.constants.ResultConstant;
+import com.huluobo.core.context.RequestDataHolder;
 import com.huluobo.core.request.RequestData;
 import com.huluobo.core.result.ResultData;
 import com.huluobo.module.entity.DictType;
@@ -59,6 +60,7 @@ public class DictTypeController {
     public ResultData queryDictType(RequestData requestData){
         String dictTypeCode = requestData.getString("dictTypeCode");
         List<Map<String,Object>> list = this.dictTypeService.queryDictType(dictTypeCode);
+        RequestData requestData1 = RequestDataHolder.getRequestData();
         return ResultData.success(list);
     }
 
