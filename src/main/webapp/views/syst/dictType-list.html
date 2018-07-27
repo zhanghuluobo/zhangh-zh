@@ -3,24 +3,18 @@
 <head>
     <meta charset="UTF-8">
 </head>
-<body>
-<div class="bodyContainer">
-    <table id="dictTypeList" class="easyui-datagrid">
-        <thead>
-        <tr>
-            <th data-options="field:'dictTypeCode',width:'50px'">字典类型编码</th>
-            <th data-options="field:'dictTypeName',width:'50px'">字典类型名称</th>
-            <th data-options="field:'category',width:'50px'">所属类别</th>
-            <th data-options="field:'dictTypeDetail',width:'50px'">字典类型描述</th>
-            <th data-options="field:'executiveStandard',width:'50px'">执行标准</th>
-            <th data-options="field:'dictTypeStatus',width:'50px'">状态</th>
-        </tr>
-        </thead>
-    </table>
+<body >
+<div class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'north'" style="height:60px"></div>
+    <div data-options="region:'center'">
+        <table id="dictTypeList"></table>
+    </div>
+
     <div id="toolbar">
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true"
-           onclick="openDictType('新增字典类型','/zhangh/system/dictType/insertDictTypes')">新增字典类型</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">编辑字典类型</a>
+           onclick="openDictType('新增字典类型')">新增字典类型</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
+           onclick="editUser()">编辑字典类型</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
            onclick="destroyUser()">删除字典类型</a>
     </div>
@@ -55,7 +49,7 @@
         </form>
     </div>
     <div id="dictType-buttons">
-        <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="insertDictType()"
+        <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="insertDictType('/zhangh/system/dictType/insertDictType')"
            style="width:90px">Save</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel"
            onclick="javascript:$('#dictType').dialog('close')" style="width:90px">Cancel</a>
@@ -69,8 +63,18 @@
             pagination: true,
             rownumbers: true,
             singleSelect: true,
-            toolbar: '#toolbar'
+            toolbar: '#toolbar',
+            fit: true,
+            columns: [[
+                {field: 'dictTypeCode', title: '字典类型编码', width: 100},
+                {field: 'dictTypeName', title: '字典类型名称', width: 100},
+                {field: 'category', title: '所属类别', width: 100},
+                {field: 'dictTypeDetail', title: '字典类型描述', width: 100},
+                {field: 'executiveStandard', title: '执行标准', width: 100},
+                {field: 'dictTypeStatus', title: '状态', width: 100}
+            ]]
         });
+
         var myData = {}
         $.ajax({
             url: '/zhangh/system/dictType/queryDictType',
@@ -80,6 +84,7 @@
             contentType: 'application/json; charset=utf-8',
             success: function (resultData) {
                 var data = resultData.data;
+                console.log(data);
                 $('#dictTypeList').datagrid({
                     data: data
                 });
@@ -87,32 +92,29 @@
         });
     });
 
-    var url;
-
     //弹窗
-    function openDictType(title, respectiveUrl) {
+    function openDictType(title) {
         $('#dictType').dialog('open').dialog('center').dialog('setTitle', title);
         $('#dictTypeForm').form('clear');
-        url = respectiveUrl;
     }
 
     //新增
-    function insertDictType() {
+    function insertDictType(respectiveUrl) {
         var myData = $('#dictTypeForm').serializeJson();
         $.ajax({
-            url: '/zhangh/system/dictType/insertDictType',
+            url: respectiveUrl,
             type: 'post',
             data: JSON.stringify(myData),
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             success: function (resultData) {
                 var code = resultData.code;
-                $.messager.show({
-                    msg: resultData.msg
-                });
                 if (1 == code) {
+                    $.messageShowSuccess(resultData.msg);
                     $('#dictType').dialog('close');
                     $('#dictTypeList').datagrid('reload');
+                }else {
+                    $.messageShowFail(resultData.msg);
                 }
             }
         });
