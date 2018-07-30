@@ -30,37 +30,36 @@ public class DictTypeController {
     /**
      * 字典类型-增加
      *
+     * @param
+     * @return
      * @author zhanghui
      * @since 2018/7/25 15:03
      * 版权所有 ZH
-     * @param
-     * @return
      **/
-    @RequestMapping(name = "字典类型-增加",path = "insertDictType")
-    public ResultData insertDictType(RequestData requestData){
+    @RequestMapping(name = "字典类型-增加", path = "insertDictType")
+    public ResultData insertDictType(RequestData requestData) {
         DictType dictType = requestData.parase(DictType.class);
         Integer i = this.dictTypeService.insertDictType(dictType);
-        if(i>=0){
+        if (i >= 0) {
             return ResultData.success(ResultConstant.INSERT_SUCCESS);
-        }else {
+        } else {
             return ResultData.error(ResultConstant.INSERT_FAIL);
         }
     }
 
     /**
-     *字典类型-列表
+     * 字典类型-列表
      *
+     * @param
+     * @return
      * @author zhanghui
      * @since 2018/7/22 16:36
      * 版权所有 ZH
-     * @param
-     * @return
      **/
-    @RequestMapping(name = "字典类型-列表",path = "queryDictType")
-    public ResultData queryDictType(RequestData requestData){
+    @RequestMapping(name = "字典类型-列表", path = "queryDictType")
+    public ResultData queryDictType(RequestData requestData) {
         String dictTypeCode = requestData.getString("dictTypeCode");
-        List<Map<String,Object>> list = this.dictTypeService.queryDictType(dictTypeCode);
-        RequestData requestData1 = RequestDataHolder.getRequestData();
+        List<Map<String, Object>> list = this.dictTypeService.queryDictType(dictTypeCode);
         return ResultData.success(list);
     }
 
