@@ -1,7 +1,7 @@
 package com.huluobo.module.controller;
 
 import com.huluobo.core.request.RequestData;
-import com.huluobo.core.result.ResultData;
+import com.huluobo.core.result.ResponseData;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,8 +21,9 @@ import java.util.Map;
 public class MenuController {
 
     @RequestMapping(name = "查询菜单列表",path = "queryMenu")
-    public ResultData queryMenu(RequestData requestData){
+    public ResponseData queryMenu(RequestData requestData) {
         List<Map<String, Object>> list = new ArrayList<>();
+        int i = 5 / 0;
         //-------------------------模拟数据-------------------------
         Map<String, Object> map1 = new HashMap<>();
         map1.put("id",1);
@@ -46,6 +47,6 @@ public class MenuController {
         map1.put("children",list1);
         list.add(map1);
         //-------------------------模拟数据-------------------------
-        return ResultData.success(list);
+        return ResponseData.success(list);
     }
 }

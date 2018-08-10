@@ -29,6 +29,7 @@
     <!-- 日志输出级别 -->
     <root level="DEBUG">
         <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE"/>
     </root>
 
     <!--myibatis log configure-->

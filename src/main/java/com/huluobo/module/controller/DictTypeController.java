@@ -1,16 +1,14 @@
 package com.huluobo.module.controller;
 
 import com.huluobo.core.constants.ResultConstant;
-import com.huluobo.core.context.RequestDataHolder;
 import com.huluobo.core.request.RequestData;
-import com.huluobo.core.result.ResultData;
+import com.huluobo.core.result.ResponseData;
 import com.huluobo.module.entity.DictType;
 import com.huluobo.module.service.IDictTypeService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -37,13 +35,13 @@ public class DictTypeController {
      * 版权所有 ZH
      **/
     @RequestMapping(name = "字典类型-增加", path = "insertDictType")
-    public ResultData insertDictType(RequestData requestData) {
+    public ResponseData insertDictType(RequestData requestData) {
         DictType dictType = requestData.parase(DictType.class);
         Integer i = this.dictTypeService.insertDictType(dictType);
         if (i >= 0) {
-            return ResultData.success(ResultConstant.INSERT_SUCCESS);
+            return ResponseData.success(ResultConstant.INSERT_SUCCESS);
         } else {
-            return ResultData.error(ResultConstant.INSERT_FAIL);
+            return ResponseData.error(ResultConstant.INSERT_FAIL);
         }
     }
 
@@ -57,10 +55,10 @@ public class DictTypeController {
      * 版权所有 ZH
      **/
     @RequestMapping(name = "字典类型-列表", path = "queryDictType")
-    public ResultData queryDictType(RequestData requestData) {
+    public ResponseData queryDictType(RequestData requestData) {
         String dictTypeCode = requestData.getString("dictTypeCode");
         List<Map<String, Object>> list = this.dictTypeService.queryDictType(dictTypeCode);
-        return ResultData.success(list);
+        return ResponseData.success(list);
     }
 
 }

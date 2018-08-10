@@ -10,7 +10,7 @@ import java.io.Serializable;
  * 版权所有 ZH
  **/
 
-public class ResultData implements Serializable {
+public class ResponseData implements Serializable {
 
     private static final Integer SUCCESS_CODE = 1;
     private static final Integer ERROR_CODE = -1;
@@ -21,7 +21,7 @@ public class ResultData implements Serializable {
     private String msg;
     private Object data;
 
-    public ResultData(Integer code, String msg, Object data) {
+    public ResponseData(Integer code, String msg, Object data) {
         this.code = code;
         this.msg = msg;
         this.data = data;
@@ -52,24 +52,24 @@ public class ResultData implements Serializable {
     }
 
     //-----------------------------------------------成功----------------------------------------------
-    public static ResultData success(Object data){
+    public static ResponseData success(Object data) {
         return result(SUCCESS_CODE,SUCCESS_MSG,data);
     }
 
-    public static ResultData success(){
+    public static ResponseData success() {
         return success("");
     }
 
     //-----------------------------------------------失败-----------------------------------------------
-    public static ResultData error(Object data){
+    public static ResponseData error(Object data) {
         return result(ERROR_CODE, ERROR_MSG, data);
     }
 
-    public static ResultData error(){
+    public static ResponseData error() {
         return error("");
     }
 
-    public static ResultData result(Integer code, String msg, Object data) {
-        return new ResultData(code, msg, data);
+    public static ResponseData result(Integer code, String msg, Object data) {
+        return new ResponseData(code, msg, data);
     }
 }
