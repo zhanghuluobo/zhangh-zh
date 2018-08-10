@@ -42,6 +42,7 @@
         <aop:aspect ref="requestDataAop">
             <!--定义切点-->
             <aop:pointcut id="requestDataPointCut" expression="execution(* com.huluobo.module.controller.*.*(..))"/>
+            <!--定义通知-->
             <aop:around method="requestDataTemporary" pointcut-ref="requestDataPointCut"></aop:around>
         </aop:aspect>
     </aop:config>
