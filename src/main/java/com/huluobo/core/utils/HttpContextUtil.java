@@ -20,6 +20,12 @@ public class HttpContextUtil {
     public HttpContextUtil() {
     }
 
+    /**
+     * 获取当前请求的request对象
+     * <p>
+     * Author zhangh
+     * Date 2018/8/14 20:40
+     */
     public static HttpServletRequest getRequest(){
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if (requestAttributes == null) {
@@ -29,6 +35,12 @@ public class HttpContextUtil {
         }
     }
 
+    /**
+     * 获取当前请求的response对象
+     * <p>
+     * Author zhangh
+     * Date 2018/8/14 20:41
+     */
     public static HttpServletResponse getResponse(){
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if (requestAttributes == null) {
