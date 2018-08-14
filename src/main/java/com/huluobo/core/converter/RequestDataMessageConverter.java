@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.huluobo.core.request.RequestData;
 import com.huluobo.core.utils.MediaTypeUtil;
-import com.huluobo.core.utils.RequestResponseUtil;
+import com.huluobo.core.utils.HttpContextUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.*;
@@ -50,7 +50,7 @@ public class RequestDataMessageConverter extends AbstractHttpMessageConverter<Ob
     protected Object readInternal(Class<?> clazz, HttpInputMessage httpInputMessage) throws IOException, HttpMessageNotReadableException {
         String requestBody = StreamUtils.copyToString(httpInputMessage.getBody(), Charset.forName("UTF-8"));
         logger.debug("RequestBody:" + requestBody);
-        HttpServletRequest request = RequestResponseUtil.getRequest();
+        HttpServletRequest request = HttpContextUtil.getRequest();
         return this.encapsulationRequestData(requestBody, request);
     }
 
