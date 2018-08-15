@@ -23,8 +23,6 @@ public class MenuController {
     @RequestMapping(name = "查询菜单列表",path = "queryMenu")
     public ResponseData queryMenu(RequestData requestData) {
         List<Map<String, Object>> list = new ArrayList<>();
-        Integer i = null;
-        int o = i / 6;
         //-------------------------模拟数据-------------------------
         Map<String, Object> map1 = new HashMap<>();
         map1.put("id",1);

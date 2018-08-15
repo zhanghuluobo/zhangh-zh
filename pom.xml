@@ -170,6 +170,7 @@
     <build>
         <finalName>zhangh</finalName>
         <plugins>
+            <!--编译-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -181,15 +182,16 @@
                 </configuration>
             </plugin>
 
+            <!--内置tomcat插件-->
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>tomcat-maven-plugin</artifactId>
-                <version>1.1</version>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
                 <configuration>
                     <ignorePackaging>true</ignorePackaging>
                     <path>/zhangh</path>
                     <port>8080</port>
-                    <!--<uriEncoding>UTF-8</uriEncoding>-->
+                    <uriEncoding>UTF-8</uriEncoding>
                     <server>tomcat8</server>
                 </configuration>
             </plugin>
