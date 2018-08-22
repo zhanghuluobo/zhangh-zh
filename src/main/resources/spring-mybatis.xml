@@ -42,7 +42,7 @@
                         <value>
                             helperDialect=mysql
                             reasonable=true
-                            offsetAsPageNum=true
+                            rowBoundsWithCount=true
                         </value>
                     </property>
                 </bean>

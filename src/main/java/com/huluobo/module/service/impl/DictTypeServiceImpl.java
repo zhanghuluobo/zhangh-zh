@@ -1,7 +1,8 @@
 package com.huluobo.module.service.impl;
 
-import com.huluobo.core.factory.PageFactory;
-import com.huluobo.core.plugin.Page;
+
+import com.github.pagehelper.PageHelper;
+import com.huluobo.core.plugin.pagination.Page;
 import com.huluobo.module.entity.DictType;
 import com.huluobo.module.mapper.DictTypeMapper;
 import com.huluobo.module.service.IDictTypeService;
@@ -26,15 +27,15 @@ public class DictTypeServiceImpl implements IDictTypeService {
      */
     @Override
     public Page<Map<String, Object>> queryDictType(String dictTypeCode) {
-//        PageFactory pageFactory = new PageFactory(1, 5);
-        Page<Map<String, Object>> page = new Page<>(1, 5);
+        Page<Map<String, Object>> page = new Page<>(10, 19);
+        List<Map<String, Object>> list1 = this.dictTypeMapper.queryDictType(dictTypeCode);
         List<Map<String, Object>> list = this.dictTypeMapper.queryDictType(dictTypeCode, page);
-        page.setRecords(list);
-        return page;
+        return page.setRecords(list);
     }
 
     /**
      * 字典类型-增加
+     *
      *
      * @param dictType
      * @return

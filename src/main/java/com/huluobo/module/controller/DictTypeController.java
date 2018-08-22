@@ -1,8 +1,8 @@
 package com.huluobo.module.controller;
 
+
 import com.huluobo.core.constants.ResultConstant;
-import com.huluobo.core.factory.PageFactory;
-import com.huluobo.core.plugin.Page;
+import com.huluobo.core.plugin.pagination.Page;
 import com.huluobo.core.request.RequestData;
 import com.huluobo.core.result.ResponseData;
 import com.huluobo.module.entity.DictType;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.List;
 import java.util.Map;
 
 /**
