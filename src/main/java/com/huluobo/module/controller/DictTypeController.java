@@ -2,6 +2,7 @@ package com.huluobo.module.controller;
 
 import com.huluobo.core.constants.ResultConstant;
 import com.huluobo.core.factory.PageFactory;
+import com.huluobo.core.plugin.Page;
 import com.huluobo.core.request.RequestData;
 import com.huluobo.core.result.ResponseData;
 import com.huluobo.module.entity.DictType;
@@ -58,7 +59,7 @@ public class DictTypeController {
     @RequestMapping(name = "字典类型-列表", path = "queryDictType")
     public ResponseData queryDictType(RequestData requestData) {
         String dictTypeCode = requestData.getString("dictTypeCode");
-        PageFactory pageFactory = this.dictTypeService.queryDictType(dictTypeCode);
+        Page<Map<String, Object>> pageFactory = this.dictTypeService.queryDictType(dictTypeCode);
         return ResponseData.success(pageFactory);
     }
 
