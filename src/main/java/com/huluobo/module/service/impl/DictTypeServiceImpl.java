@@ -1,11 +1,12 @@
 package com.huluobo.module.service.impl;
 
 
-import com.github.pagehelper.PageHelper;
 import com.huluobo.core.plugin.pagination.Page;
+import com.huluobo.core.plugin.pagination.PageTest;
 import com.huluobo.module.entity.DictType;
 import com.huluobo.module.mapper.DictTypeMapper;
 import com.huluobo.module.service.IDictTypeService;
+import org.apache.ibatis.executor.resultset.DefaultResultSetHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,10 +28,11 @@ public class DictTypeServiceImpl implements IDictTypeService {
      */
     @Override
     public Page<Map<String, Object>> queryDictType(String dictTypeCode) {
-        Page<Map<String, Object>> page = new Page<>(10, 19);
-        List<Map<String, Object>> list1 = this.dictTypeMapper.queryDictType(dictTypeCode);
-        List<Map<String, Object>> list = this.dictTypeMapper.queryDictType(dictTypeCode, page);
-        return page.setRecords(list);
+
+        PageTest<Map<String, Object>> pageTest = new PageTest<>(1, 10);
+        List<Map<String, Object>> maps = this.dictTypeMapper.queryDictType(pageTest, dictTypeCode);
+        pageTest.setRecords(maps);
+        return null;
     }
 
     /**
