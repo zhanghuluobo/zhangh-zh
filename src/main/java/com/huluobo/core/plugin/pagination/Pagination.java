@@ -17,49 +17,70 @@ public class Pagination extends PageRowBounds implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     *
+     * 当前页
      */
-    private int current = 1;
+    private int pageNo = 1;
 
     /**
      * 每页显示数目
      */
-    private int size = 10;
+    private int pageSize = 10;
 
     /**
-     * 查询总条数
+     * 总页数
      */
-    private boolean count = true;
+    private long pages = 0;
+
 
     /**
      * 构造参数
      *
-     * @param current 第几行显示
-     * @param size    每页显示几条
+     * @param pageNo   当前页
+     * @param pageSize 每页显示数目
      */
-    public Pagination(int current, int size) {
-        super(current, size);
-        this.current = current;
-        this.size = size;
+    public Pagination(int pageNo, int pageSize) {
+        super(PageHelper.offsetCurrent(pageNo, pageSize), pageSize);
+        this.pageNo = pageNo;
+        this.pageSize = pageSize;
     }
 
-
-    public int getCurrent() {
-        return current;
+    public int getPageNo() {
+        return pageNo;
     }
 
-    public Pagination setCurrent(int current) {
-        this.current = current;
+    public Pagination setPageNo(int pageNo) {
+        this.pageNo = pageNo;
         return this;
     }
 
-    public int getSize() {
-        return size;
+    public int getPageSize() {
+        return pageSize;
     }
 
-    public Pagination setSize(int size) {
-        this.size = size;
+    public Pagination setPageSize(int pageSize) {
+        this.pageSize = pageSize;
         return this;
+    }
+
+    /**
+     * 总页数
+     *
+     * @param
+     * @return
+     * @author zhanghui
+     * @since 2018/8/29 17:07
+     * 版权所有 ZH
+     **/
+    public long getPages() {
+        if (this.pageSize == 0) {
+            return 0L;
+        } else {
+            long pages = this.getTotal() / this.pageSize;
+            if (this.getTotal() % this.pageSize != 0) {
+                pages++;
+            }
+            return pages;
+        }
     }
 
     @Override

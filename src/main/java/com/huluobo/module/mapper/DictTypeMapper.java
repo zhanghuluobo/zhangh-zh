@@ -2,7 +2,6 @@ package com.huluobo.module.mapper;
 
 
 import com.huluobo.core.plugin.pagination.Page;
-import com.huluobo.core.plugin.pagination.PageTest;
 import com.huluobo.module.entity.DictType;
 import org.apache.ibatis.annotations.Param;
 
@@ -14,8 +13,7 @@ public interface DictTypeMapper {
 
     Integer insertDictType(DictType dictType);
 
-    //    List<Map<String, Object>> queryDictType(@Param("dictTypeCode") String dictTypeCode, Page<Map<String, Object>> page);
-    List<Map<String, Object>> queryDictType(PageTest<Map<String, Object>> page, @Param("dictTypeCode") String dictTypeCode);
+    List<Map<String, Object>> queryDictType(Page<Map<String, Object>> page, @Param("dictTypeCode") String dictTypeCode);
 
-    List<Map<String, Object>> queryDictType(String dictTypeCode);
+    List<Map<String, Object>> queryDictType(@Param("dictTypeCode") String dictTypeCode);
 }

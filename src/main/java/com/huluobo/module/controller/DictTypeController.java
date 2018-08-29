@@ -58,8 +58,8 @@ public class DictTypeController {
     @RequestMapping(name = "字典类型-列表", path = "queryDictType")
     public ResponseData queryDictType(RequestData requestData) {
         String dictTypeCode = requestData.getString("dictTypeCode");
-        Page<Map<String, Object>> pageFactory = this.dictTypeService.queryDictType(dictTypeCode);
-        return ResponseData.success(pageFactory);
+        Page<Map<String, Object>> page = this.dictTypeService.queryDictType(dictTypeCode);
+        return ResponseData.success(page);
     }
 
 }
