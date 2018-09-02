@@ -22,11 +22,12 @@
     </filter-mapping>
 
     <!--RequestContextListener监听器-->
-    <!--<listener>-->
-    <!--<listener-class>-->
-    <!--org.springframework.web.context.request.RequestContextListener-->
-    <!--</listener-class>-->
-    <!--</listener>-->
+    <listener>
+        <listener-class>
+            org.springframework.web.context.request.RequestContextListener
+        </listener-class>
+    </listener>
+
 
     <!-- 配置DispatcherServlet -->
     <servlet>

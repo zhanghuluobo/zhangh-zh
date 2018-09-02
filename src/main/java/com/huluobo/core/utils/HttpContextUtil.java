@@ -14,8 +14,6 @@ import javax.servlet.http.HttpSession;
  * Date 2018/6/13 21:40
  *
  */
-
-
 public class HttpContextUtil {
 
     public HttpContextUtil() {

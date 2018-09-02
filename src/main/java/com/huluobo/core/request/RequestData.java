@@ -1,9 +1,11 @@
 package com.huluobo.core.request;
 
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 
 import javax.json.JsonObject;
 import java.io.Serializable;
+import java.util.Map;
 
 /**
  * 请求参数
@@ -46,10 +48,6 @@ public class RequestData implements Serializable {
     }
 
     //-----------------------------------------------------扩展-----------------------------------------------------
-    public String getString(String key){
-        return this.data.getString(key);
-    }
-
     public <T> T parase(Class<T> clazz){
         return this.data.toJavaObject(clazz);
     }
@@ -58,5 +56,45 @@ public class RequestData implements Serializable {
         return this.data.getObject(key,clazz);
     }
 
+    /**
+     * 获取对应的值
+     * <p>
+     * Author zhangh
+     * Date 2018/9/2 21:15
+     */
+    public Object get(String key) {
+        return this.data.get(key);
+    }
+
+    /**
+     * 获取对应的String类型
+     * <p>
+     * Author zhangh
+     * Date 2018/9/2 21:12
+     */
+    public String getString(String key) {
+        return this.data.getString(key);
+    }
+
+    /**
+     * 获取对应的Integer类型
+     * <p>
+     * Author zhangh
+     * Date 2018/9/2 21:12
+     */
+    public Integer getInteger(String key) {
+        return this.data.getInteger(key);
+    }
+
+
+    /**
+     * 获取对应的Long类型
+     * <p>
+     * Author zhangh
+     * Date 2018/9/2 21:22
+     */
+    public Long getLong(String key) {
+        return this.data.getLong(key);
+    }
 
 }

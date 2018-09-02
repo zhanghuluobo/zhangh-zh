@@ -1,6 +1,7 @@
 package com.huluobo.module.service.impl;
 
 
+import com.huluobo.core.factory.PageFactory;
 import com.huluobo.core.plugin.pagination.Page;
 import com.huluobo.module.entity.DictType;
 import com.huluobo.module.mapper.DictTypeMapper;
@@ -26,7 +27,8 @@ public class DictTypeServiceImpl implements IDictTypeService {
      */
     @Override
     public Page<Map<String, Object>> queryDictType(String dictTypeCode) {
-        Page<Map<String, Object>> page = new Page<>(1, 10);
+//        Page<Map<String, Object>> page = new Page<>(1, 10);
+        Page<Map<String, Object>> page = PageFactory.defaultPagination();
         List<Map<String, Object>> list = this.dictTypeMapper.queryDictType(page, dictTypeCode);
         return page.setRecords(list);
     }
