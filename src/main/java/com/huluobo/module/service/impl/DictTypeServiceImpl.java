@@ -27,7 +27,6 @@ public class DictTypeServiceImpl implements IDictTypeService {
      */
     @Override
     public Page<Map<String, Object>> queryDictType(String dictTypeCode) {
-//        Page<Map<String, Object>> page = new Page<>(1, 10);
         Page<Map<String, Object>> page = PageFactory.defaultPagination();
         List<Map<String, Object>> list = this.dictTypeMapper.queryDictType(page, dictTypeCode);
         return page.setRecords(list);

@@ -1,10 +1,10 @@
 package com.huluobo.core.factory;
 
+import cn.hutool.core.util.NumberUtil;
+import cn.hutool.core.util.StrUtil;
 import com.huluobo.core.plugin.pagination.Page;
 import com.huluobo.core.utils.HttpContextUtil;
 import com.huluobo.core.utils.RequestParamUtil;
-import com.sun.xml.internal.ws.resources.HttpserverMessages;
-import org.springframework.http.HttpInputMessage;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -44,18 +44,21 @@ public class PageFactory {
      * @return
      * @author zhanghui
      * @since 2018/8/29 17:39
-     * 版权所有 ZH
      **/
     public static <T> Page<T> defaultPagination() {
         //获取请求参数
         HttpServletRequest request = HttpContextUtil.getRequest();
 
-        String page = RequestParamUtil.getStringParameter(request, PAGE_NO);
-
-
-        new Page<T>(pageNo, pageSize);
-        return null;
+        if (request == null) {
+            return new Page<T>(pageNo, pageSize);
+        } else {
+            Integer pageNoI = RequestParamUtil.getIntegerParamter(request, PAGE_NO);
+            Integer pageSizeI = RequestParamUtil.getIntegerParamter(request, PAGE_SIZE);
+            if (pageNoI == null || pageSizeI == null) {
+                return new Page<T>(pageNo, pageSize);
+            } else {
+                return new Page<T>(pageNoI, pageSizeI);
+            }
+        }
     }
-
-
 }
