@@ -51,6 +51,10 @@ public class RequestDataMessageConverter extends AbstractHttpMessageConverter<Ob
         String requestBody = StreamUtils.copyToString(httpInputMessage.getBody(), Charset.forName("UTF-8"));
         logger.debug("RequestBody:" + requestBody);
         HttpServletRequest request = HttpContextUtil.getRequest();
+        if (request == null) {
+            logger.debug("request is null");
+            return null;
+        }
         return this.encapsulationRequestData(requestBody, request);
     }
 
