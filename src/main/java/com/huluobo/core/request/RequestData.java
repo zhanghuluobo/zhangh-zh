@@ -1,10 +1,13 @@
 package com.huluobo.core.request;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 
 import javax.json.JsonObject;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -95,6 +98,21 @@ public class RequestData implements Serializable {
      */
     public Long getLong(String key) {
         return this.data.getLong(key);
+    }
+
+    /**
+     * 获取对应的List类型
+     *
+     * @author zhanghui
+     * @since 2018/9/3 11:05
+     **/
+    public <T> List<T> getList(String key, Class<T> clazz) {
+        JSONArray jsonArray = this.data.getJSONArray(key);
+        if (jsonArray != null) {
+            return jsonArray.toJavaList(clazz);
+        } else {
+            return new ArrayList<T>();
+        }
     }
 
 }
