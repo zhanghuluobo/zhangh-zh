@@ -3,6 +3,7 @@ package com.huluobo.core.request;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
+import com.huluobo.core.utils.JsonUtil;
 
 import javax.json.JsonObject;
 import java.io.Serializable;
@@ -113,6 +114,16 @@ public class RequestData implements Serializable {
         } else {
             return new ArrayList<T>();
         }
+    }
+
+    /**
+     * 获取对应的Map类型
+     * <p>
+     * Author zhangh
+     * Date 2018/9/4 20:42
+     */
+    public Map<String, Object> getMap(String key) {
+        return JsonUtil.jsonObjectToMap(this.data.getJSONObject(key));
     }
 
 }
