@@ -2,7 +2,6 @@ package com.huluobo.core.utils;
 
 import com.alibaba.fastjson.JSONObject;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -16,14 +15,30 @@ import java.util.Set;
 public class JsonUtil {
 
     public static Map<String, Object> jsonObjectToMap(JSONObject jsonObject) {
-        Map<String, Object> map = new HashMap<>();
+
         Set<Map.Entry<String, Object>> entries = jsonObject.getInnerMap().entrySet();
         Iterator<Map.Entry<String, Object>> iterator = entries.iterator();
-        Map.Entry<String, Object> next = null;
-        while (iterator.hasNext()) {
-            next = iterator.next();
-            map.put(next.getKey(), next.getValue());
-        }
+
+        //递归转map
+        Map<String, Object> map = recursionToMap(iterator);
+//        while (iterator.hasNext()) {
+//            Map.Entry<String, Object> next = iterator.next();
+//            Object value = next.getValue();
+//            if(value instanceof JSONObject){
+//                System.out.println(123);
+//            }
+//            map.put(next.getKey(), value);
+//        }
         return map;
+    }
+
+    /**
+     * 递归转map
+     *
+     * @author zhanghui
+     * @since 2018/9/4 15:27
+     **/
+    private static Map<String, Object> recursionToMap(Iterator<Map.Entry<String, Object>> iterator) {
+        return null;
     }
 }
