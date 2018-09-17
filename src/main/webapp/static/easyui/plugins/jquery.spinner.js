@@ -1,5 +1,5 @@
 /**
- * EasyUI for jQuery 1.5.5.4
+ * EasyUI for jQuery 1.6.3
  * 
  * Copyright (c) 2009-2018 www.jeasyui.com. All rights reserved.
  *
@@ -86,14 +86,16 @@ $(_2).spinner("readonly");
 }
 }
 $(_2).spinner("resize");
-};
-function _13(_14,_15){
+}
+
+    function _13(_14, _15) {
 var _16=$(_14).spinner("options");
 _16.spin.call(_14,_15);
 _16[_15?"onSpinDown":"onSpinUp"].call(_14);
 $(_14).spinner("validate");
-};
-$.fn.spinner=function(_17,_18){
+    }
+
+    $.fn.spinner = function (_17, _18) {
 if(typeof _17=="string"){
 var _19=$.fn.spinner.methods[_17];
 if(_19){

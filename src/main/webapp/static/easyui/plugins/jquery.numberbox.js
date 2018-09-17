@@ -1,5 +1,5 @@
 /**
- * EasyUI for jQuery 1.5.5.4
+ * EasyUI for jQuery 1.6.3
  * 
  * Copyright (c) 2009-2018 www.jeasyui.com. All rights reserved.
  *
@@ -19,8 +19,9 @@ _3.numberbox.addClass("numberbox");
 var _5=_4.parser.call(_2,_4.value);
 var _6=_4.formatter.call(_2,_5);
 $(_2).numberbox("initValue",_5).numberbox("setText",_6);
-};
-function _7(_8,_9){
+}
+
+    function _7(_8, _9) {
 var _a=$.data(_8,"numberbox");
 var _b=_a.options;
 _b.value=parseFloat(_9);
@@ -30,8 +31,9 @@ _b.value=_9;
 $(_8).textbox("setText",_c).textbox("setValue",_9);
 _c=_b.formatter.call(_8,$(_8).textbox("getValue"));
 $(_8).textbox("setText",_c);
-};
-$.fn.numberbox=function(_d,_e){
+    }
+
+    $.fn.numberbox = function (_d, _e) {
 if(typeof _d=="string"){
 var _f=$.fn.numberbox.methods[_d];
 if(_f){

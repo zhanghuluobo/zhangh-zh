@@ -10,15 +10,6 @@
     <script type="text/javascript" src="/zhangh/static/easyui/jquery.min.js"></script>
     <script type="text/javascript" src="/zhangh/static/easyui/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="/zhangh/static/easyui/huluobo.js"></script>
-    <!--insdep-->
-    <!--<link rel="stylesheet" type="text/css" href="/zhangh/static/insdepUI/insdep.easyui.min.css">-->
-    <!--<link rel="stylesheet" type="text/css" href="/zhangh/static/insdepUI/icon.css">-->
-    <!--<link rel="stylesheet" type="text/css" href="/zhangh/static/insdepUI/iconfont/iconfont.css">-->
-    <!--<link rel="stylesheet" type="text/css" href="/zhangh/static/easyui/huluobo.css">-->
-    <!--<script type="text/javascript" src="/zhangh/static/easyui/jquery.min.js"></script>-->
-    <!--<script type="text/javascript" src="/zhangh/static/easyui/jquery.easyui.min.js"></script>-->
-    <!--<script type="text/javascript" src="/zhangh/static/insdepUI/insdep.extend.min.js"></script>-->
-    <!--<script type="text/javascript" src="/zhangh/static/easyui/huluobo.js"></script>-->
     <style>
         .tree-expanded {
             background: none;
@@ -30,12 +21,12 @@
 </head>
 <body class="easyui-layout">
 <!--######################################### 上部 #################################################-->
-<div data-options="region:'north',border:false" style="height:50px;background:#399bff;">
-    <div class="applogo">
-        <span class="logo">ZH</span>
-        <span class="logo_sub">V1.0</span>
-    </div>
-</div>
+<!--<div data-options="region:'north',border:false" style="height:50px;background:#399bff;">-->
+<!--<div class="applogo">-->
+<!--<span class="logo">ZH</span>-->
+<!--<span class="logo_sub">V1.0</span>-->
+<!--</div>-->
+<!--</div>-->
 <!--######################################## 左侧树 #################################################-->
 <div data-options="region:'west',title:' ',border:true" style="width:250px;">
     <div class="easyui-panel" style="padding:5px 0 0 0;border: none;">
@@ -58,7 +49,7 @@
     $(document).ready(function () {
         //初始化树组件
         $('#menuTree').tree();
-        var myData = {}
+        var myData = {};
         $.ajax({
             url: '/zhangh/system/menu/queryMenu',
             type: 'post',

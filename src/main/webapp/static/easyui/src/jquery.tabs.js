@@ -1,5 +1,5 @@
 /**
- * EasyUI for jQuery 1.5.5.4
+ * EasyUI for jQuery 1.6.3
  * 
  * Copyright (c) 2009-2018 www.jeasyui.com. All rights reserved.
  *
@@ -274,7 +274,7 @@
 	}
 	
 	function bindEvents(container){
-		var state = $.data(container, 'tabs')
+        var state = $.data(container, 'tabs');
 		var opts = state.options;
 		$(container).children('div.tabs-header').unbind().bind('click', function(e){
 			if ($(e.target).hasClass('tabs-scroller-left')){
@@ -694,7 +694,7 @@
 	 * do first select action, if no tab is setted the first tab will be selected.
 	 */
 	function doFirstSelect(container){
-		var state = $.data(container, 'tabs')
+        var state = $.data(container, 'tabs');
 		var tabs = state.tabs;
 		for(var i=0; i<tabs.length; i++){
 			var opts = tabs[i].panel('options');

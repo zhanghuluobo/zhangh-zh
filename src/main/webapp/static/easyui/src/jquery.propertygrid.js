@@ -1,5 +1,5 @@
 /**
- * EasyUI for jQuery 1.5.5.4
+ * EasyUI for jQuery 1.6.3
  * 
  * Copyright (c) 2009-2018 www.jeasyui.com. All rights reserved.
  *
@@ -104,7 +104,7 @@
 			}
 			buildGrid(this);
 		});
-	}
+    };
 	
 	$.fn.propertygrid.methods = {
 		options: function(jq){
@@ -293,11 +293,11 @@
 			opts.onResizeColumn = function(field, width){
 				view.resizeGroup(target);
 				state.onResizeColumn.call(target, field, width);
-			}
+            };
 			opts.onResize = function(width, height){
 				view.resizeGroup(target);		
 				state.onResize.call($(target).datagrid('getPanel')[0], width, height);
-			}
+            };
 			view.resizeGroup(target);
 		}
 	});
@@ -372,7 +372,8 @@
 			var dc = state.dc;
 			var ht = dc.header2.find('table');
 			var fr = ht.find('tr.datagrid-filter-row').hide();
-			var ww = ht.width();
+            // var ww = ht.width();
+            var ww = dc.body2.children('table.datagrid-btable:first').width();
 			if (groupIndex == undefined){
 				var groupHeader = dc.body2.children('div.datagrid-group');
 			} else {
@@ -433,7 +434,7 @@
 					value: row[opts.groupField],
 					rows: [row],
 					startIndex: state.data.rows.length
-				}
+                };
 				groupIndex = this.groups.length;
 				dc.body1.append(this.renderGroup.call(this, target, groupIndex, group, true));
 				dc.body2.append(this.renderGroup.call(this, target, groupIndex, group, false));

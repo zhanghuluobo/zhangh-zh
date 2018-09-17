@@ -1,5 +1,5 @@
 /**
- * EasyUI for jQuery 1.5.5.4
+ * EasyUI for jQuery 1.6.3
  * 
  * Copyright (c) 2009-2018 www.jeasyui.com. All rights reserved.
  *
@@ -21,13 +21,14 @@ var _8=$(_3).filebox("button");
 if(_8.length){
 $("<label class=\"filebox-label\" for=\""+_5.fileboxId+"\"></label>").appendTo(_8);
 if(_8.linkbutton("options").disabled){
-_6.attr("disabled","disabled");
+    _6._propAttr("disabled", true);
 }else{
-_6.removeAttr("disabled");
+    _6._propAttr("disabled", false);
 }
 }
-};
-function _7(_9){
+}
+
+    function _7(_9) {
 var _a=$.data(_9,"filebox");
 var _b=_a.options;
 _a.filebox.find(".textbox-value").remove();
@@ -51,8 +52,9 @@ _b.onChange.call(_9,_d,_b.oldValue);
 _b.oldValue=_d;
 });
 return _c;
-};
-$.fn.filebox=function(_f,_10){
+    }
+
+    $.fn.filebox = function (_f, _10) {
 if(typeof _f=="string"){
 var _11=$.fn.filebox.methods[_f];
 if(_11){

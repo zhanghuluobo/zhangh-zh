@@ -1,5 +1,5 @@
 /**
- * EasyUI for jQuery 1.5.5.4
+ * EasyUI for jQuery 1.6.3
  * 
  * Copyright (c) 2009-2018 www.jeasyui.com. All rights reserved.
  *
@@ -33,8 +33,9 @@ _5.css(_9);
 _8.remove();
 }
 }
-};
-function _b(_c){
+}
+
+    function _b(_c) {
 var _d=$.data(_c,"linkbutton").options;
 var t=$(_c).empty();
 t.addClass("l-btn").removeClass("l-btn-plain l-btn-selected l-btn-plain-selected l-btn-outline");
@@ -80,8 +81,9 @@ _d.onClick.call(this);
 });
 _f(_c,_d.selected);
 _10(_c,_d.disabled);
-};
-function _f(_11,_12){
+    }
+
+    function _f(_11, _12) {
 var _13=$.data(_11,"linkbutton").options;
 if(_12){
 if(_13.group){
@@ -101,8 +103,9 @@ $(_11).removeClass("l-btn-selected l-btn-plain-selected");
 _13.selected=false;
 }
 }
-};
-function _10(_14,_15){
+    }
+
+    function _10(_14, _15) {
 var _16=$.data(_14,"linkbutton");
 var _17=_16.options;
 $(_14).removeClass("l-btn-disabled l-btn-plain-disabled");
@@ -127,8 +130,9 @@ if(_16.onclick){
 _14.onclick=_16.onclick;
 }
 }
-};
-$.fn.linkbutton=function(_19,_1a){
+    }
+
+    $.fn.linkbutton = function (_19, _1a) {
 if(typeof _19=="string"){
 return $.fn.linkbutton.methods[_19](this,_1a);
 }
@@ -139,7 +143,7 @@ if(_1b){
 $.extend(_1b.options,_19);
 }else{
 $.data(this,"linkbutton",{options:$.extend({},$.fn.linkbutton.defaults,$.fn.linkbutton.parseOptions(this),_19)});
-$(this).removeAttr("disabled");
+    $(this)._propAttr("disabled", false);
 $(this).bind("_resize",function(e,_1c){
 if($(this).hasClass("easyui-fluid")||_1c){
 _1(this);

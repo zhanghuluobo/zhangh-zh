@@ -1,5 +1,5 @@
 /**
- * EasyUI for jQuery 1.5.5.4
+ * EasyUI for jQuery 1.6.3
  * 
  * Copyright (c) 2009-2018 www.jeasyui.com. All rights reserved.
  *
@@ -226,7 +226,7 @@
 		if (firstWeek.length < 7){
 			while(firstWeek.length < 7){
 				var firstDate = firstWeek[0];
-				var date = new Date(firstDate[0],firstDate[1]-1,firstDate[2]-1)
+                var date = new Date(firstDate[0], firstDate[1] - 1, firstDate[2] - 1);
 				firstWeek.unshift([date.getFullYear(), date.getMonth()+1, date.getDate()]);
 			}
 		} else {

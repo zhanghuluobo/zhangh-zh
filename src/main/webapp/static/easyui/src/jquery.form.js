@@ -1,5 +1,5 @@
 /**
- * EasyUI for jQuery 1.5.5.4
+ * EasyUI for jQuery 1.6.3
  * 
  * Copyright (c) 2009-2018 www.jeasyui.com. All rights reserved.
  *
@@ -42,7 +42,8 @@
 			disabledFields = $(target).find('input[name]:enabled,textarea[name]:enabled,select[name]:enabled').filter(function(){
 				return $.inArray(this, ff) == -1;
 			});
-			disabledFields.attr('disabled', 'disabled');
+            // disabledFields.attr('disabled', 'disabled');
+            disabledFields._propAttr('disabled', true);
 		}
 
 		if (opts.ajax){
@@ -60,14 +61,15 @@
 		}
 
 		if (opts.dirty){
-			disabledFields.removeAttr('disabled');
+            // disabledFields.removeAttr('disabled');
+            disabledFields._propAttr('disabled', false);
 		}
 	}
 
 	function submitIframe(target, param){
 		var opts = $.data(target, 'form').options;
 		var frameId = 'easyui_frame_' + (new Date().getTime());
-		var frame = $('<iframe id='+frameId+' name='+frameId+'></iframe>').appendTo('body')
+        var frame = $('<iframe id=' + frameId + ' name=' + frameId + '></iframe>').appendTo('body');
 		frame.attr('src', window.ActiveXObject ? 'javascript:false' : 'about:blank');
 		frame.css({
 			position:'absolute',
@@ -229,17 +231,21 @@
 		 * check the checkbox and radio fields
 		 */
 		function _checkField(name, val){
-			var cc = $(target).find('[switchbuttonName="'+name+'"]');
-			if (cc.length){
-				cc.switchbutton('uncheck');
-				cc.each(function(){
-					if (_isChecked($(this).switchbutton('options').value, val)){
-						$(this).switchbutton('check');
-					}
-				});
-				return true;
-			}
-			cc = $(target).find('input[name="'+name+'"][type=radio], input[name="'+name+'"][type=checkbox]');
+            var plugins = ['switchbutton', 'radiobutton', 'checkbox'];
+            for (var i = 0; i < plugins.length; i++) {
+                var plugin = plugins[i];
+                var cc = $(target).find('[' + plugin + 'Name="' + name + '"]');
+                if (cc.length) {
+                    cc[plugin]('uncheck');
+                    cc.each(function () {
+                        if (_isChecked($(this)[plugin]('options').value, val)) {
+                            $(this)[plugin]('check');
+                        }
+                    });
+                    return true;
+                }
+            }
+            var cc = $(target).find('input[name="' + name + '"][type=radio], input[name="' + name + '"][type=checkbox]');
 			if (cc.length){
 				cc._propAttr('checked', false);
 				cc.each(function(){
@@ -471,7 +477,7 @@
 	$.fn.form.defaults = {
 		fieldTypes: ['tagbox','combobox','combotree','combogrid','combotreegrid','datetimebox','datebox','combo',
 		        'datetimespinner','timespinner','numberspinner','spinner',
-		        'slider','searchbox','numberbox','passwordbox','filebox','textbox','switchbutton'],
+            'slider', 'searchbox', 'numberbox', 'passwordbox', 'filebox', 'textbox', 'switchbutton', 'radiobutton', 'checkbox'],
 		novalidate: false,
 		ajax: true,
 		iframe: true,

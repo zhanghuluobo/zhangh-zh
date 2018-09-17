@@ -1,5 +1,5 @@
 /**
- * EasyUI for jQuery 1.5.5.4
+ * EasyUI for jQuery 1.6.3
  * 
  * Copyright (c) 2009-2018 www.jeasyui.com. All rights reserved.
  *
@@ -22,8 +22,9 @@ $.data(_2,"droppable").options.onDragOver.apply(_2,[e,_5]);
 $(_2).bind("_drop",function(e,_6){
 $.data(_2,"droppable").options.onDrop.apply(_2,[e,_6]);
 });
-};
-$.fn.droppable=function(_7,_8){
+}
+
+    $.fn.droppable = function (_7, _8) {
 if(typeof _7=="string"){
 return $.fn.droppable.methods[_7](this,_8);
 }

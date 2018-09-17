@@ -1,5 +1,5 @@
 /**
- * EasyUI for jQuery 1.5.5.4
+ * EasyUI for jQuery 1.6.3
  * 
  * Copyright (c) 2009-2018 www.jeasyui.com. All rights reserved.
  *
@@ -10,8 +10,9 @@
 (function($){
 function _1(_2){
 $(_2).addClass("tooltip-f");
-};
-function _3(_4){
+}
+
+    function _3(_4) {
 var _5=$.data(_4,"tooltip").options;
 $(_4).unbind(".tooltip").bind(_5.showEvent+".tooltip",function(e){
 $(_4).tooltip("show",e);
@@ -24,8 +25,9 @@ _5.trackMouseY=e.pageY;
 $(_4).tooltip("reposition");
 }
 });
-};
-function _6(_7){
+    }
+
+    function _6(_7) {
 var _8=$.data(_7,"tooltip");
 if(_8.showTimer){
 clearTimeout(_8.showTimer);
@@ -35,8 +37,9 @@ if(_8.hideTimer){
 clearTimeout(_8.hideTimer);
 _8.hideTimer=null;
 }
-};
-function _9(_a){
+    }
+
+    function _9(_a) {
 var _b=$.data(_a,"tooltip");
 if(!_b||!_b.tip){
 return;
@@ -92,11 +95,15 @@ top=t.offset().top+_14;
 switch(_c.position){
 case "right":
 _12+=t._outerWidth()+12+(_c.trackMouse?12:0);
+    if (_c.valign == "middle") {
 top-=(_d._outerHeight()-t._outerHeight())/2;
+    }
 break;
 case "left":
 _12-=_d._outerWidth()+12+(_c.trackMouse?12:0);
+    if (_c.valign == "middle") {
 top-=(_d._outerHeight()-t._outerHeight())/2;
+    }
 break;
 case "top":
 _12-=(_d._outerWidth()-t._outerWidth())/2;
@@ -108,9 +115,10 @@ top+=t._outerHeight()+12+(_c.trackMouse?12:0);
 break;
 }
 return {left:_12,top:top};
-};
-};
-function _15(_16,e){
+}
+    }
+
+    function _15(_16, e) {
 var _17=$.data(_16,"tooltip");
 var _18=_17.options;
 var tip=_17.tip;
@@ -131,8 +139,9 @@ _1a.add(_1b).css({borderTopColor:"",borderBottomColor:"",borderLeftColor:"",bord
 _1a.css(bc,tip.css(bc));
 _1b.css(bc,tip.css("backgroundColor"));
 },_18.showDelay);
-};
-function _1c(_1d,e){
+    }
+
+    function _1c(_1d, e) {
 var _1e=$.data(_1d,"tooltip");
 if(_1e&&_1e.tip){
 _6(_1d);
@@ -141,8 +150,9 @@ _1e.tip.hide();
 _1e.options.onHide.call(_1d,e);
 },_1e.options.hideDelay);
 }
-};
-function _19(_1f,_20){
+    }
+
+    function _19(_1f, _20) {
 var _21=$.data(_1f,"tooltip");
 var _22=_21.options;
 if(_20){
@@ -154,8 +164,9 @@ return;
 var cc=typeof _22.content=="function"?_22.content.call(_1f):_22.content;
 _21.tip.children(".tooltip-content").html(cc);
 _22.onUpdate.call(_1f,cc);
-};
-function _23(_24){
+    }
+
+    function _23(_24) {
 var _25=$.data(_24,"tooltip");
 if(_25){
 _6(_24);
@@ -170,8 +181,9 @@ $.removeData(_24,"tooltip");
 $(_24).unbind(".tooltip").removeClass("tooltip-f");
 _26.onDestroy.call(_24);
 }
-};
-$.fn.tooltip=function(_27,_28){
+    }
+
+    $.fn.tooltip = function (_27, _28) {
 if(typeof _27=="string"){
 return $.fn.tooltip.methods[_27](this,_28);
 }
@@ -224,7 +236,18 @@ _2c.content=_2c._title;
 }
 return _2c;
 };
-$.fn.tooltip.defaults={position:"bottom",content:null,trackMouse:false,deltaX:0,deltaY:0,showEvent:"mouseenter",hideEvent:"mouseleave",showDelay:200,hideDelay:100,onShow:function(e){
+    $.fn.tooltip.defaults = {
+        position: "bottom",
+        valign: "middle",
+        content: null,
+        trackMouse: false,
+        deltaX: 0,
+        deltaY: 0,
+        showEvent: "mouseenter",
+        hideEvent: "mouseleave",
+        showDelay: 200,
+        hideDelay: 100,
+        onShow: function (e) {
 },onHide:function(e){
 },onUpdate:function(_2d){
 },onPosition:function(_2e,top){

@@ -1,5 +1,5 @@
 /**
- * EasyUI for jQuery 1.5.5.4
+ * EasyUI for jQuery 1.6.3
  * 
  * Copyright (c) 2009-2018 www.jeasyui.com. All rights reserved.
  *
@@ -50,8 +50,9 @@ _5.left=_6;
 _5.top=_7;
 }
 }
-};
-function _8(e){
+}
+
+    function _8(e) {
 var _9=$.data(e.data.target,"draggable");
 var _a=_9.options;
 var _b=_9.proxy;
@@ -60,8 +61,9 @@ _b=$(e.data.target);
 }
 _b.css({left:e.data.left,top:e.data.top});
 $("body").css("cursor",_a.cursor);
-};
-function _c(e){
+    }
+
+    function _c(e) {
 if(!$.fn.draggable.isDragging){
 return false;
 }
@@ -98,8 +100,9 @@ _1(e);
 _8(e);
 _e.onStartDrag.call(e.data.target,e);
 return false;
-};
-function _12(e){
+    }
+
+    function _12(e) {
 if(!$.fn.draggable.isDragging){
 return false;
 }
@@ -129,8 +132,9 @@ this.entered=false;
 }
 });
 return false;
-};
-function _16(e){
+    }
+
+    function _16(e) {
 if(!$.fn.draggable.isDragging){
 _17();
 return false;
@@ -173,8 +177,9 @@ if(_19){
 _19.remove();
 }
 _18.proxy=null;
-};
-function _1b(){
+}
+
+        function _1b() {
 var _1e=false;
 _18.droppables.each(function(){
 var _1f=$(this);
@@ -197,10 +202,12 @@ if(!_1e&&!_1a.revert){
 _1d();
 }
 return _1e;
-};
-return false;
-};
-function _17(){
+        }
+
+        return false;
+    }
+
+    function _17() {
 if($.fn.draggable.timer){
 clearTimeout($.fn.draggable.timer);
 $.fn.draggable.timer=undefined;
@@ -210,8 +217,9 @@ $.fn.draggable.isDragging=false;
 setTimeout(function(){
 $("body").css("cursor","");
 },100);
-};
-$.fn.draggable=function(_20,_21){
+    }
+
+    $.fn.draggable = function (_20, _21) {
 if(typeof _20=="string"){
 return $.fn.draggable.methods[_20](this,_21);
 }
@@ -275,7 +283,7 @@ var r=_2d.left+_2e-e.pageX;
 var b=_2d.top+_2f-e.pageY;
 var l=e.pageX-_2d.left;
 return Math.min(t,r,b,l)>_2b.options.edge;
-};
+}
 });
 };
 $.fn.draggable.methods={options:function(jq){

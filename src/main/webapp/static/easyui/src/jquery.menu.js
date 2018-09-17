@@ -1,5 +1,5 @@
 /**
- * EasyUI for jQuery 1.5.5.4
+ * EasyUI for jQuery 1.6.3
  * 
  * Copyright (c) 2009-2018 www.jeasyui.com. All rights reserved.
  *
@@ -386,11 +386,11 @@
 		var fn = $.isFunction(param) ? param : function(item){
 			for(var p in param){
 				if (item[p] != param[p]){
-					return false;;
-				}
+                    return false;
+                }
 			}
 			return true;
-		}
+        };
 		function find(menu){
 			menu.children('div.menu-item').each(function(){
 				var opts = $(this).data('menuitem').options;

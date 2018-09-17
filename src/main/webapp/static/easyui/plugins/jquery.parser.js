@@ -1,5 +1,5 @@
 /**
- * EasyUI for jQuery 1.5.5.4
+ * EasyUI for jQuery 1.6.3
  * 
  * Copyright (c) 2009-2018 www.jeasyui.com. All rights reserved.
  *
@@ -63,7 +63,9 @@ _9.unshift(_a.children[i]);
 }
 }};
 $.parser={auto:true,onComplete:function(_b){
-},plugins:["draggable","droppable","resizable","pagination","tooltip","linkbutton","menu","menubutton","splitbutton","switchbutton","progressbar","tree","textbox","passwordbox","maskedbox","filebox","combo","combobox","combotree","combogrid","combotreegrid","tagbox","numberbox","validatebox","searchbox","spinner","numberspinner","timespinner","datetimespinner","calendar","datebox","datetimebox","slider","layout","panel","datagrid","propertygrid","treegrid","datalist","tabs","accordion","window","dialog","form"],parse:function(_c){
+    },
+    plugins: ["draggable", "droppable", "resizable", "pagination", "tooltip", "linkbutton", "menu", "sidemenu", "menubutton", "splitbutton", "switchbutton", "progressbar", "radiobutton", "checkbox", "tree", "textbox", "passwordbox", "maskedbox", "filebox", "combo", "combobox", "combotree", "combogrid", "combotreegrid", "tagbox", "numberbox", "validatebox", "searchbox", "spinner", "numberspinner", "timespinner", "datetimespinner", "calendar", "datebox", "datetimebox", "slider", "layout", "panel", "datagrid", "propertygrid", "treegrid", "datalist", "tabs", "accordion", "window", "dialog", "form"],
+    parse: function (_c) {
 var aa=[];
 for(var i=0;i<$.parser.plugins.length;i++){
 var _d=$.parser.plugins[i];
@@ -265,8 +267,9 @@ $("html").removeClass("panel-fit");
 }
 return false;
 }
-};
-function _22(_26,_27,_28,_29){
+}
+
+    function _22(_26, _27, _28, _29) {
 var t=$(_26);
 var p=_27;
 var p1=p.substr(0,1).toUpperCase()+p.substr(1);
@@ -288,8 +291,9 @@ t._size("min"+p1,min);
 t._size("max"+p1,max);
 }
 return _2a||_29.fit;
-};
-function _21(_2b,_2c,_2d){
+    }
+
+    function _21(_2b, _2c, _2d) {
 var t=$(_2b);
 if(_2d==undefined){
 _2d=parseInt(_2b.style[_2c]);
@@ -319,8 +323,8 @@ return t.outerWidth()-t.width();
 }else{
 return t.outerHeight()-t.height();
 }
-};
-};
+}
+    }
 };
 })(jQuery);
 (function($){
@@ -348,8 +352,9 @@ _33(e,"mousedown");
 if($.fn.draggable.isDragging||$.fn.resizable.isResizing){
 e.preventDefault();
 }
-};
-function _34(e){
+}
+
+    function _34(e) {
 if(e.touches.length!=1){
 return;
 }
@@ -360,8 +365,9 @@ _33(e,"mousemove");
 if($.fn.draggable.isDragging||$.fn.resizable.isResizing){
 e.preventDefault();
 }
-};
-function _35(e){
+    }
+
+    function _35(e) {
 if(_2f){
 clearTimeout(_2f);
 }
@@ -369,15 +375,17 @@ _33(e,"mouseup");
 if($.fn.draggable.isDragging||$.fn.resizable.isResizing){
 e.preventDefault();
 }
-};
-function _33(e,_36,_37){
+    }
+
+    function _33(e, _36, _37) {
 var _38=new $.Event(_36);
 _38.pageX=e.changedTouches[0].pageX;
 _38.pageY=e.changedTouches[0].pageY;
 _38.which=_37||1;
 $(e.target).trigger(_38);
-};
-if(document.addEventListener){
+    }
+
+    if (document.addEventListener) {
 document.addEventListener("touchstart",_32,true);
 document.addEventListener("touchmove",_34,true);
 document.addEventListener("touchend",_35,true);
