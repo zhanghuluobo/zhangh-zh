@@ -23,10 +23,29 @@ $(document).ready(function () {
     $('#pagination').pagination({
         layout: ['list', 'sep', 'first', 'prev', 'links', 'next', 'last', 'sep'],
         pageNumber: 1,
-        pageList: [10, 20, 50, 100]
+        pageList: [10, 20, 50, 100],
     });
 
+    //字典列表
+    queryDictType();
+});
 
+//分页相关操作
+$('#pagination').pagination({
+    onSelectPage: function (pageNo, pageSize) {
+        _pageNo = pageNo;
+        _pageSize = pageSize;
+        queryDictType();
+    },
+    onChangePageSize: function (pageNo, pageSize) {
+        _pageNo = pageNo;
+        _pageSize = pageSize;
+        queryDictType();
+    }
+});
+
+//列表查询
+function queryDictType() {
     var myData = {
         pageNo: _pageNo,
         pageSize: _pageSize
@@ -48,7 +67,7 @@ $(document).ready(function () {
             });
         }
     });
-});
+}
 
 //弹窗
 function openDictType(title) {
