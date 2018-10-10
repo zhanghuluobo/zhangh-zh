@@ -89,7 +89,9 @@ function insertDictType(respectiveUrl) {
             if (1 == code) {
                 $.messageShowSuccess(resultData.msg);
                 $('#dictType').dialog('close');
-                $('#dictTypeList').datagrid('reload');
+
+                //字典列表
+                queryDictType();
             } else {
                 $.messageShowFail(resultData.msg);
             }
