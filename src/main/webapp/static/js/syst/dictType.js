@@ -51,7 +51,7 @@ function queryDictType() {
         pageSize: _pageSize
     };
     $.ajax({
-        url: '/zhangh/system/dictType/queryDictType',
+        url: '/zhangh/system/dictType/queryDictTypePage',
         type: 'post',
         data: JSON.stringify(myData),
         dataType: 'json',

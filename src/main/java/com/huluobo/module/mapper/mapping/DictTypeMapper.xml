@@ -5,9 +5,9 @@
     <!--查询字典类型列表-->
     <select id="queryDictType" parameterType="string" resultType="map">
         SELECT
-            T1.DICT_TYPE_ID AS dictTypeId,
-            T1.DICT_TYPE_DETAIL AS dictTypeDetail,
-            T1.DICT_TYPE_CODE AS dictTypeCode,
+        T1.DICT_TYPE_ID AS dictTypeId,
+        T1.DICT_TYPE_DETAIL AS dictTypeDetail,
+        T1.DICT_TYPE_CODE AS dictTypeCode,
             T1.DICT_TYPE_NAME AS dictTypeName,
             T1.EXECUTIVE_STANDARD AS executiveStandard,
             T1.CATEGORY AS category,
@@ -41,5 +41,22 @@
             #{storeIp}
         )
     </insert>
+
+    <!--字典类型详情-->
+    <select id="detailDictType" parameterType="string" resultType="map">
+        SELECT
+            DICT_TYPE_ID AS dictTypeId,
+            DICT_TYPE_DETAIL AS dictTypeDetail,
+            DICT_TYPE_CODE AS dictTypeCode,
+            DICT_TYPE_NAME AS dictTypeName,
+            EXECUTIVE_STANDARD AS executiveStandard,
+            CATEGORY AS category,
+            DICT_TYPE_STATUS AS dictTypeStatus
+        FROM
+            syst_dict_type
+        WHERE
+            DICT_TYPE_ID = #{dictTypeId}
+    </select>
+
 
 </mapper>

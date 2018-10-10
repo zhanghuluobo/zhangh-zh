@@ -13,7 +13,11 @@ public interface DictTypeMapper {
 
     Integer insertDictType(DictType dictType);
 
-    List<Map<String, Object>> queryDictType(Page<Map<String, Object>> page, @Param("dictTypeCode") String dictTypeCode);
+    List<Map<String, Object>> queryDictType(Page<Map<String, Object>> page, @Param("dictTypeCode") String dictTypeCode, @Param("dictTypeName") String dictTypeName);
 
-    List<Map<String, Object>> queryDictType(@Param("dictTypeCode") String dictTypeCode);
+    List<Map<String, Object>> queryDictType(@Param("dictTypeCode") String dictTypeCode, @Param("dictTypeName") String dictTypeName);
+
+    Map<String, Object> detailDictType(@Param("dictTypeId") String dictTypeId);
+
+    Integer updateDictTyep(DictType dictType);
 }
